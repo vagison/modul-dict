@@ -1,6 +1,6 @@
 {
-  "name": "dict-front",
-  "version": "0.1.0",
+  "name": "modul-dictionary",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",

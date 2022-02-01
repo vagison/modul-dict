@@ -16,6 +16,7 @@ const Footer = ({
     <div className="footer">
       <a
         href="https://modul.am/"
+        rel="noreferrer"
         className="footerContent black-60"
         target="_blank"
       >
