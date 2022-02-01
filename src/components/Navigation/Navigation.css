@@ -1,0 +1,65 @@
+/* For Mobile */
+@media screen and (min-width: 0em) and (max-width: 70em) {
+  .navigationBarBox {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .linksBox {
+    order: 2;
+    text-align: center;
+  }
+
+  .interfaceOptionsBox {
+    order: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .signinOptionsBox {
+    order: 2;
+  }
+
+  .interfaceLanguageBox {
+    order: 1;
+    justify-content: center;
+    display: flex;
+  }
+}
+
+/* For Tablets */
+@media screen and (min-width: 70em) {
+  .linksBox {
+    display: flex;
+    float: left;
+  }
+
+  .interfaceOptionsBox {
+    display: flex;
+    float: right;
+    align-items: center;
+  }
+
+  .interfaceLanguageBox {
+    display: flex;
+    float: right;
+    align-items: center;
+  }
+}
+
+.interfaceLanguageEnglish {
+  white-space: pre;
+  display: flex;
+}
+
+.interfaceLanguageArmenian {
+  display: flex;
+}
+
+.interfaceInactiveLanguage {
+  color: rgba(0, 0, 0, 0.2) !important ;
+}
+
+.interfaceInactiveLanguage img {
+  opacity: 0.2;
+}

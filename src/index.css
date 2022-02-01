@@ -1,0 +1,59 @@
+html {
+  height: 100%;
+  /* background: linear-gradient(180deg, #cb191e 0%, #3c3c3c 50%); */
+  /* background-image: linear-gradient(
+    90deg,
+    #cb191e,
+    #be1c21,
+    #b11f23,
+    #a42326,
+    #972629,
+    #8a292c,
+    #7d2c2e,
+    #702f31,
+    #633234,
+    #563637,
+    #493939,
+    #3c3c3c
+  ); */
+  /* background: linear-gradient(90deg, #3c373b 0%, #6a7476 100%); */
+  /* background: linear-gradient(90deg, #ff5edf 0%, #04c8de 100%); */
+  /* background: linear-gradient(0deg, #09203f 0%, #537895 100%); */
+  /* background: linear-gradient(90deg, #1d0023  0%, #6f0007  100%); */
+  /* background: linear-gradient(90deg, #cfd9df 0%, #e2ebf0 100%); */
+  background: linear-gradient(90deg, #fdfbfb 0%, #ebedee 100%);
+  /* background: linear-gradient(90deg, #f5f7fa 0%, #c3cfe2 100%); */
+  /* background: linear-gradient(90deg, #93a5cf 0%, #e4efe9 100%); */
+  /* background: linear-gradient(90deg, #a89fa4  0%, #e2caca 100%); */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 40px;
+}
+
+button {
+  cursor: pointer;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

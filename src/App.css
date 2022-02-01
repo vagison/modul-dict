@@ -1,0 +1,28 @@
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.asyncSelectField {
+  text-align: left;
+  border-color: rgb(118, 118, 118);
+}
+
+.asyncSelectField > div:first-of-type > div:first-of-type > div:first-of-type {
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.asyncSelectField > div:first-of-type {
+  background: rgba(255, 255, 255, 0);
+}
+
+input {
+  height: calc(100%);
+}

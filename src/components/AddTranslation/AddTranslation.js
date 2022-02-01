@@ -1,0 +1,422 @@
+import React from "react";
+import update from "react-addons-update";
+import AsyncSelect from "react-select/async";
+import { addTranslationLabels } from "../../util/labels/labels";
+import "./AddTranslation.css";
+
+const initialState = {
+  labels: addTranslationLabels,
+  englishWord: "",
+  armenianWord: "",
+  pos: "",
+  qualityEngArm: "",
+  qualityArmEng: "",
+  fields: [],
+  pronunciation: "",
+  abbreviationEng: "",
+  abbreviationArm: "",
+  examples: [],
+  status: 0,
+};
+
+class AddTranslation extends React.Component {
+  constructor() {
+    super();
+    this.state = initialState;
+  }
+
+  // // resetFields
+  resetFields() {
+    this.setState(initialState);
+  }
+
+  // // parameter change
+  onParamChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  // // part of speech
+  // search part of speech
+  searchPOS = (inputValue, callback) => {
+    fetch("http://localhost:3000/search-pos", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        searchedPOS: inputValue,
+      }),
+    })
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((data) => {
+        const tempArray = [];
+        if (data) {
+          if (data.length) {
+            data.forEach((element) => {
+              tempArray.push({
+                label: element.pos,
+                value: element.id,
+              });
+            });
+          }
+        }
+        callback(tempArray);
+      })
+      .catch((error) => {
+        console.log(error, "error occurred");
+      });
+  };
+
+  // change part of speech
+  onPOSChange = (currentlySelectedPOS) => {
+    if (currentlySelectedPOS) {
+      this.setState({
+        pos: currentlySelectedPOS,
+      });
+    }
+  };
+
+  // // field
+  // search field
+  searchField = (inputValue, callback) => {
+    fetch("http://localhost:3000/search-field", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        searchedField: inputValue,
+      }),
+    })
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((data) => {
+        const tempArray = [];
+        if (data) {
+          if (data.length) {
+            data.forEach((element) => {
+              tempArray.push({
+                label: element.field,
+                value: element.id,
+              });
+            });
+          }
+        }
+        callback(tempArray);
+      })
+      .catch((error) => {
+        console.log(error, "error occurred");
+      });
+  };
+
+  // change field
+  onFieldChange = (fields) => {
+    if (fields) {
+      this.setState({
+        fields,
+      });
+    }
+  };
+
+  // // examples
+  // append examples
+  appendExamples = (fnc) => {
+    fnc();
+  };
+
+  // armenian example change
+  onArmenianExampleChange = (event) => {
+    this.setState({
+      examples: update(this.state.examples, {
+        [event.target.name]: { armenianExample: { $set: event.target.value } },
+      }),
+    });
+  };
+
+  // english example change
+  onEnglishExampleChange = (event) => {
+    this.setState({
+      examples: update(this.state.examples, {
+        [event.target.name]: { englishExample: { $set: event.target.value } },
+      }),
+    });
+  };
+
+  // //translation registration
+  registerTranslation = (event) => {
+    event.preventDefault();
+    fetch("http://localhost:3000/register-translation", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        token: document.cookie.split("=", 2)[1],
+        englishWord: this.state.englishWord,
+        armenianWord: this.state.armenianWord,
+        pos: this.state.pos["value"],
+        qualityEngArm: Number(this.state.qualityEngArm),
+        qualityArmEng: Number(this.state.qualityArmEng),
+        fields: this.state.fields,
+        pronunciation: this.state.pronunciation,
+        abbreviationEng: this.state.abbreviationEng,
+        abbreviationArm: this.state.abbreviationArm,
+        examples: this.state.examples,
+      }),
+    })
+      .then((res) => {
+        this.setState({ status: res["status"] });
+      })
+      .then(() => {
+        if (this.state.status === 304) {
+          alert(
+            `${this.state.labels[this.props.interfaceLanguage]["existingWord"]}`
+          );
+        } else if (this.state.status === 401) {
+          alert(
+            `${
+              this.state.labels[this.props.interfaceLanguage]["incorrectUser"]
+            }`
+          );
+        } else if (this.state.status === 500) {
+          alert(
+            `${
+              this.state.labels[this.props.interfaceLanguage]["incorrectData"]
+            }`
+          );
+        } else {
+          this.resetFields();
+        }
+      })
+      .catch((error) => {
+        console.log(error, "error occurred");
+      });
+  };
+
+  render() {
+    const {
+      title,
+      englishWord,
+      armenianWord,
+      partOfSpeech,
+      englishArmenianQuality,
+      armenianEnglishQuality,
+      fields,
+      pronunciation,
+      englishAbbreviation,
+      armenianAbbreviation,
+      addExamples,
+      registerTranslation,
+      englishExampleNo,
+      armenianExampleNo,
+    } = this.state.labels[this.props.interfaceLanguage];
+
+    return (
+      <article className="br3 pa3 ba b--black-10 mv2 w-80 w-80-m w-60-l mw7 shadow-5 center addTranslationBox">
+        <main className="pa4 mw7 center black-60">
+          <h1 className="f4 f2-m f1-l fw6">{title}</h1>
+          <form onSubmit={this.registerTranslation}>
+            <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
+              {/* english word */}
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6">{englishWord}</label>
+                <input
+                  value={this.state.englishWord}
+                  className="pa2 input-reset ba bg-transparent w-100"
+                  type="text"
+                  name="englishWord"
+                  id="englishWord"
+                  required
+                  onChange={this.onParamChange}
+                />
+              </div>
+
+              {/* armenian word */}
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6">{armenianWord}</label>
+                <input
+                  value={this.state.armenianWord}
+                  className="pa2 input-reset ba bg-transparent w-100"
+                  type="text"
+                  name="armenianWord"
+                  id="armenianWord"
+                  required
+                  onChange={this.onParamChange}
+                />
+              </div>
+
+              {/* part of speech */}
+              <div className="mt3 posBox">
+                <label className="db fw6 lh-copy f6">{partOfSpeech}</label>
+                <AsyncSelect
+                  className="input-reset ba bg-transparent w-100 asyncSelectField"
+                  value={this.state.pos}
+                  loadOptions={this.searchPOS}
+                  onChange={(changedPOS) => {
+                    this.onPOSChange(changedPOS);
+                  }}
+                  defaultOptions={true}
+                />
+              </div>
+
+              {/* english->armenian quality */}
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6">
+                  {englishArmenianQuality}
+                </label>
+                <input
+                  value={this.state.qualityEngArm}
+                  className="pa2 input-reset ba bg-transparent w-100"
+                  type="number"
+                  name="qualityEngArm"
+                  min="1"
+                  max="10"
+                  id="qualityEngArm"
+                  onChange={this.onParamChange}
+                />
+              </div>
+
+              {/* armenian->english quality */}
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6">
+                  {armenianEnglishQuality}
+                </label>
+                <input
+                  value={this.state.qualityArmEng}
+                  className="pa2 input-reset ba bg-transparent w-100"
+                  type="number"
+                  min="1"
+                  max="10"
+                  name="qualityArmEng"
+                  id="qualityArmEng"
+                  onChange={this.onParamChange}
+                />
+              </div>
+
+              {/* fields */}
+              <div className="mt3 fieldsBox">
+                <label className="db fw6 lh-copy f6">{fields}</label>
+                <AsyncSelect
+                  isMulti
+                  className="input-reset ba bg-transparent w-100 asyncSelectField"
+                  value={this.state.fields}
+                  loadOptions={this.searchField}
+                  onChange={(fields) => {
+                    this.onFieldChange(fields);
+                  }}
+                  defaultOptions={true}
+                />
+              </div>
+
+              {/* pronunciation */}
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6">{pronunciation}</label>
+                <input
+                  value={this.state.pronunciation}
+                  className="pa2 input-reset ba bg-transparent w-100"
+                  type="text"
+                  name="pronunciation"
+                  id="pronunciation"
+                  onChange={this.onParamChange}
+                />
+              </div>
+
+              {/* abbreviation english */}
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6">
+                  {englishAbbreviation}
+                </label>
+                <input
+                  value={this.state.abbreviationEng}
+                  className="pa2 input-reset ba bg-transparent w-100"
+                  type="text"
+                  name="abbreviationEng"
+                  id="abbreviationEng"
+                  onChange={this.onParamChange}
+                />
+              </div>
+
+              {/* abbreviation armenian */}
+              <div className="mt3">
+                <label className="db fw6 lh-copy f6">
+                  {armenianAbbreviation}
+                </label>
+                <input
+                  value={this.state.abbreviationArm}
+                  className="pa2 input-reset ba bg-transparent w-100"
+                  type="text"
+                  name="abbreviationArm"
+                  id="abbreviationArm"
+                  onChange={this.onParamChange}
+                />
+              </div>
+
+              {/* examples */}
+              {this.state.examples.map((example, idx) => (
+                <div key={idx}>
+                  <div className="mt3">
+                    <label className="db fw6 lh-copy f6">
+                      {englishExampleNo}
+                      {idx + 1}
+                    </label>
+                    <input
+                      value={this.state.examples[idx]["englishExample"]}
+                      className="pa2 input-reset ba bg-transparent w-100"
+                      type="text"
+                      name={idx}
+                      other="englishExample"
+                      id={"englishExampleNo".concat(idx)}
+                      onChange={this.onEnglishExampleChange}
+                    />
+                  </div>
+                  <div className="mt3">
+                    <label className="db fw6 lh-copy f6">
+                      {armenianExampleNo}
+                      {idx + 1}
+                    </label>
+                    <input
+                      value={this.state.examples[idx]["armenianExample"]}
+                      className="pa2 input-reset ba bg-transparent w-100"
+                      type="text"
+                      name={idx}
+                      other="armenianExample"
+                      id={"armenianExampleNo".concat(idx)}
+                      onChange={this.onArmenianExampleChange}
+                    />
+                  </div>
+                </div>
+              ))}
+
+              {/* append example */}
+              <button
+                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib ma2"
+                type="button"
+                onClick={() => {
+                  this.appendExamples(() => {
+                    this.setState({
+                      examples: this.state.examples.concat({
+                        englishExample: "",
+                        armenianExample: "",
+                      }),
+                    });
+                  });
+                }}
+              >
+                {addExamples}
+              </button>
+            </fieldset>
+
+            {/* register translation */}
+            <div className="registerTranslationBox">
+              <input
+                className="b ph3 pv2 input-reset ba b--black-10 bg-transparent bg-light-blue grow pointer f5 dib"
+                type="submit"
+                value={registerTranslation}
+              />
+            </div>
+          </form>
+        </main>
+      </article>
+    );
+  }
+}
+
+export default AddTranslation;
