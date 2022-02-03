@@ -9,6 +9,6 @@ This English-Armenian / Armenian-English online technical dictionary includes mo
 1. Then clone this repo
 2. Run `npm install`
 3. Run the API (from 0) at port 3000 (default)
-4. Run this project with `npm start` (should warn that "Something (the project API) is already running on port 3000")
+4. Run this project with `npm start` (should warn that "Something (apparently the project API) is already running on port 3000")
 5. Enjoy the project
 6. For making changes such as registering, deleting or updating translations you need to sign-in with the following credentials: `email: email@test.com`, `password: password`
