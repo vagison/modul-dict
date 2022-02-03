@@ -15,6 +15,7 @@ This English-Armenian / Armenian-English technical dictionary includes more than
 
 ## Screenshots of the app
 ### On desktop
+<div style="text-align:center"><img src="https://user-images.githubusercontent.com/81805058/152404015-606a59f9-c4f4-4718-b9bc-0d75165b08d9.png" /></div>
 ![desktop](https://user-images.githubusercontent.com/81805058/152404015-606a59f9-c4f4-4718-b9bc-0d75165b08d9.png)
 
 ### On mobile
