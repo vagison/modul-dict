@@ -2,7 +2,7 @@
 Final project for Modul Technical Dictionary
 
 ## About the project
-This English-Armenian / Armenian-English online technical dictionary includes more than 5000 entries (including: words, phrases and abbreviations) that are widely used in various technical fields. The database is created based on our company's years of experience in the field of technical documentation and translation.
+This English-Armenian / Armenian-English online technical dictionary includes more than 5000 entries (including: words, phrases and abbreviations) that are widely used in various technical fields. The interface of the app is bilingual (English/Armenian), offering registering, modifying and deleting of translations.
 
 ## To run this project:
 0. First you have to install and configure the API for the project according to its instructions. The link to the repo is here `https://github.com/vagison/modul-dictionary-api`
