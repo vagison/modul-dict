@@ -12,3 +12,8 @@ This English-Armenian / Armenian-English technical dictionary includes more than
 4. Run this project with `npm start` (should warn that "Something (apparently the project API) is already running on port 3000", just press "Y" to run on a different port)
 5. Enjoy the project
 6. For making changes such as registering, deleting or updating of translations you need to sign-in with the following credentials: `email: email@test.com`, `password: password`
+
+## Screenshots of the app
+### On desktop
+![desktop](https://user-images.githubusercontent.com/81805058/152404015-606a59f9-c4f4-4718-b9bc-0d75165b08d9.png)
+``
