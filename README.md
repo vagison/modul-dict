@@ -16,6 +16,10 @@ This English-Armenian / Armenian-English technical dictionary includes more than
 ## Screenshots of the app
 ### On desktop
 <div style="text-align:center"><img src="https://user-images.githubusercontent.com/81805058/152404015-606a59f9-c4f4-4718-b9bc-0d75165b08d9.png" /></div>
+<p align="center">
+  <img width=50% height=50% src="https://user-images.githubusercontent.com/81805058/152404015-606a59f9-c4f4-4718-b9bc-0d75165b08d9.png">
+</p>
 
 ### On mobile
+
 <div style="text-align:center"><img src="https://user-images.githubusercontent.com/81805058/152404325-bc5a619f-8fd1-41d1-8c8f-761316a0e4ab.png" /></div>
