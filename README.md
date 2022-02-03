@@ -23,5 +23,5 @@ This English-Armenian / Armenian-English technical dictionary includes more than
 
 ### On mobile
 <p align="center">
-  <img width=50% height=50% align="center" src="https://user-images.githubusercontent.com/81805058/152404325-bc5a619f-8fd1-41d1-8c8f-761316a0e4ab.png">
+  <img align="center" src="https://user-images.githubusercontent.com/81805058/152404325-bc5a619f-8fd1-41d1-8c8f-761316a0e4ab.png">
 </p>
