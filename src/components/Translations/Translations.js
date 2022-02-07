@@ -122,7 +122,7 @@ class Translations extends React.Component {
     } = this.state.labels[this.props.interfaceLanguage];
 
     return this.state.translations.length !== 0 ? (
-      <article className="br3 ba b--black-10 pa3 mv2 w-80 w-80-m w-60-l mw7 shadow-5 center translationsBox">
+      <article className="br3 ba b--black-10 pa2 pa3-ns mb4 mv2-ns w-80 w-80-m w-60-l mw7 shadow-5 center translationsBox">
         <main className="pa2 mw6 center black-60">
           <h1 className="f3 f2-ns fw6">{translations}</h1>
           {this.state.translations.map((eachTranslation, index) => (
