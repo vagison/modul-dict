@@ -124,7 +124,7 @@ class Translations extends React.Component {
     return this.state.translations.length !== 0 ? (
       <article className="br3 ba b--black-10 pa3 mv2 w-80 w-80-m w-60-l mw7 shadow-5 center translationsBox">
         <main className="pa2 mw6 center black-60">
-          <h1 className="f4 f2-ns fw6">{translations}</h1>
+          <h1 className="f3 f2-ns fw6">{translations}</h1>
           {this.state.translations.map((eachTranslation, index) => (
             <div className="eachTranslationBox" key={index}>
               <hr />
