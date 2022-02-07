@@ -29,7 +29,7 @@ class Translations extends React.Component {
         ? 1
         : 0;
 
-      fetch("http://localhost:3000/search-translation", {
+      fetch("https://modul-dictionary-api.herokuapp.com/search-translation", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -379,7 +379,7 @@ class Translations extends React.Component {
                     type="button"
                     onClick={() => {
                       this.deleteTranslation(() => {
-                        fetch("http://localhost:3000/delete-translation", {
+                        fetch("https://modul-dictionary-api.herokuapp.com/delete-translation", {
                           method: "post",
                           headers: { "Content-Type": "application/json" },
                           credentials: "include",

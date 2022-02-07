@@ -61,7 +61,7 @@ class App extends Component {
   setLogIn = (state) => {
     // sign out
     if (state === false) {
-      fetch("http://localhost:3000/signout", {
+      fetch("https://modul-dictionary-api.herokuapp.com/signout", {
         method: "post",
         headers: {
           "Content-Type": "application/json",

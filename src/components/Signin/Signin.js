@@ -24,7 +24,7 @@ class Signin extends React.Component {
 
   onSubmitSignIn = (event) => {
     event.preventDefault();
-    fetch("http://localhost:3000/signin", {
+    fetch("https://modul-dictionary-api.herokuapp.com/signin", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
