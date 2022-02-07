@@ -79,7 +79,7 @@ class Search extends React.Component {
     };
 
     return (
-      <article className="br3 ba b--black-10 pa0 pa3-ns mv2 w-80 w-80-m w-60-l mw7 shadow-5 center searchBox">
+      <article className="br3 ba b--black-10 pa0 pa3-ns mv2 w-90 w-80-m w-60-l mw7 shadow-5 center searchBox">
         <main className="pa3 pa4-ns mw6 center black-60">
           <h1 className="f3 f1-ns fw6">{title}</h1>
           <AsyncSelect
