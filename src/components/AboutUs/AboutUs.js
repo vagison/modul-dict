@@ -19,8 +19,8 @@ class AboutUs extends React.Component {
     } = this.state.labels[this.props.interfaceLanguage];
 
     return (
-      <article className="br3 pa0 pa3-ns ba b--black-10 mv2 w-80 w-80-m w-60-l mw8 shadow-5 center aboutUsBox">
-        <main className="pa4 center black-60">
+      <article className="br3 ba b--black-10 pa0 pa3-ns mv2 w-90 w-80-m w-60-l mw7 shadow-5 center aboutUsBox">
+        <main className="pa3 pa4-ns center black-60">
           <div className="pb3 contentBox">
             <h2 className="f1-ns f3 fw6">{aboutProjectTitle}</h2>
             <p className="content">{aboutProjectContent}</p>
