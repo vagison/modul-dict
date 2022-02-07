@@ -22,7 +22,7 @@ class AboutUs extends React.Component {
       <article className="br3 pa3 ba b--black-10 mv2 w-80 w-80-m w-60-l mw8 shadow-5 center aboutUsBox">
         <main className="pa4 center black-60">
           <div className="pb3 contentBox">
-            <h2 className="f1 fw6">{aboutProjectTitle}</h2>
+            <h2 className="f1-ns f2 fw6">{aboutProjectTitle}</h2>
             <p className="content">{aboutProjectContent}</p>
           </div>
           <div className="contentBox">
