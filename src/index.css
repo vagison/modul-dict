@@ -21,9 +21,9 @@ html {
   /* background: linear-gradient(0deg, #09203f 0%, #537895 100%); */
   /* background: linear-gradient(90deg, #1d0023  0%, #6f0007  100%); */
   /* background: linear-gradient(90deg, #cfd9df 0%, #e2ebf0 100%); */
-  background: linear-gradient(90deg, #fdfbfb 0%, #ebedee 100%);
+  /* background: linear-gradient(90deg, #fdfbfb 0%, #ebedee 100%); */
   /* background: linear-gradient(90deg, #f5f7fa 0%, #c3cfe2 100%); */
-  /* background: linear-gradient(90deg, #93a5cf 0%, #e4efe9 100%); */
+  background: linear-gradient(90deg, #93a5cf 0%, #e4efe9 100%);
   /* background: linear-gradient(90deg, #a89fa4  0%, #e2caca 100%); */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
