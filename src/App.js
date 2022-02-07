@@ -194,17 +194,9 @@ class App extends Component {
           setLogOut={this.setLogOut}
         />
         <div style={{ clear: "both" }}></div>
-        <div className="mv4 mv4-m mt5-l mb4-l">{page}</div>
+        <div className="mv2 mv4-ns mt5-l">{page}</div>
         <div style={{ clear: "both" }}></div>
         <Footer interfaceLanguage={this.state.interfaceLanguage} />
-
-        {/* <div className="footer">
-          <a href="https://modul.am/" className="footerContent black-60" target="_blank">
-            <b>
-              © {new Date().getFullYear()} "MODUL" LLC | All Rights Reserved
-            </b>
-          </a>
-        </div> */}
       </div>
     );
   }
