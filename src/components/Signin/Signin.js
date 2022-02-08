@@ -36,6 +36,9 @@ class Signin extends React.Component {
       }),
     })
     .then((response) => {
+      console.log("response", response);
+      console.log("response-cookies", response.cookies);
+      console.log("response-cookie", response.cookie);
       if (response.status === 200) {
         this.props.setLogIn(true);
       } 
