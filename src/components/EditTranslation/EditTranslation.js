@@ -248,7 +248,7 @@ class EditTranslation extends React.Component {
     } = this.state.labels[this.props.interfaceLanguage];
 
     return (
-      <article className="br3 pa3 ba b--black-10 mv2 w-80 w-80-m w-60-l mw7 shadow-5 center editTranslationBox">
+      <article className="br3 ba b--black-10 pa2 pa3-ns mb4 mv2-ns w-90 w-80-m w-60-l mw7 shadow-5 center editTranslationBox">
         <main className="pa4 pb0 mw7 center black-60">
           <h1 className="f4 f2-m f1-l fw6">{title}</h1>
           <form className="" onSubmit={this.updateTranslation}>
