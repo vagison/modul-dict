@@ -31,7 +31,7 @@ This English-Armenian / Armenian-English technical dictionary includes more than
 
 ### Mobile
 <div align="center">
-  <img width="300px" align="center" src="https://user-images.githubusercontent.com/81805058/153008716-d1d057a4-9b8e-482a-a2dc-15a3bbf52d13.jpg">
-  <img width="300px" align="center" src="https://user-images.githubusercontent.com/81805058/153008708-e324f71f-516d-4df6-b00b-ae7a22375416.jpg">
-  <img width="300px" align="center" src="https://user-images.githubusercontent.com/81805058/153008712-c92dc5e7-81c8-408e-9666-0ffa0159279b.jpg">
+  <img width="250px" align="center" src="https://user-images.githubusercontent.com/81805058/153008716-d1d057a4-9b8e-482a-a2dc-15a3bbf52d13.jpg">
+  <img width="250px" align="center" src="https://user-images.githubusercontent.com/81805058/153008708-e324f71f-516d-4df6-b00b-ae7a22375416.jpg">
+  <img width="250px" align="center" src="https://user-images.githubusercontent.com/81805058/153008712-c92dc5e7-81c8-408e-9666-0ffa0159279b.jpg">
 </div>
