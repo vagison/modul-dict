@@ -18,7 +18,7 @@ class App extends Component {
         JSON.parse(window.localStorage.getItem("interfaceLanguage")) || "ARM",
       labels: appLabels,
       route: "home",
-      isSignedIn: !document.cookie ? false : true,
+      isSignedIn: false,
       direction: 0,
       searchBoxWord: "",
       searchedWord: {},
