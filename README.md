@@ -7,7 +7,7 @@ This English-Armenian / Armenian-English technical dictionary includes more than
 ## To run this project online:
 1. Clone this repo
 2. In the project folder run `npm install`
-3. Within project folder run it with `npm start`
+3. Within project folder run `npm start`
 4. Enjoy the project
 
 ## To run this project locally:
@@ -24,9 +24,10 @@ This English-Armenian / Armenian-English technical dictionary includes more than
 ## Screenshots of the app
 
 ### Desktop
-<p align="center">
-  <img align="center" src="https://user-images.githubusercontent.com/81805058/152404015-606a59f9-c4f4-4718-b9bc-0d75165b08d9.png">
-</p>
+<div align="center">
+  <img width="400px" align="center" src="https://user-images.githubusercontent.com/81805058/153008654-0a6f5618-15bb-4e23-a2a8-92ca7f6164da.png">
+  <img width="400px" align="center" src="https://user-images.githubusercontent.com/81805058/153008674-c73c74b7-ac0f-4e34-a903-04ece5614a06.png">
+</div>
 
 ### Mobile
 <p align="center">
