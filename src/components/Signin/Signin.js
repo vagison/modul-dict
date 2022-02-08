@@ -35,12 +35,13 @@ class Signin extends React.Component {
         password: this.state.signInPassword,
       }),
     })
-    .then((response) => response.json())
-    .then((responseJSON) => {
-      console.log("aaa", responseJSON)
-    })
-    .catch((error) => {
-      console.log(error, "error occurred");
+    .then((response) => {
+      if (response.status === 200) {
+        this.props.setLogIn(true);
+      } 
+      else {
+        alert(this.state.labels[this.props.interfaceLanguage].error);
+      }
     });
   };
 
@@ -50,8 +51,6 @@ class Signin extends React.Component {
       this.state.labels[this.props.interfaceLanguage];
 
     return (
-      // <article className="br3 ba b--black-10 pa0 pa3-ns mv2 w-90 w-80-m w-60-l mw7 shadow-5 center searchBox">
-        
       <article className="br3 ba b--black-10 pa0 pa3-ns mv2 mv4-ns w-80 w-50-l mw8 mw6-ns shadow-5 center signinBox">
         <main className="pa3 pa4-ns mw6 center black-60">
           <h1 className="mv3 f2 f1-ns fw6">{title}</h1>
