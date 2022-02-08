@@ -15,10 +15,10 @@ class App extends Component {
     super(props);
     this.state = {
       interfaceLanguage:
-        JSON.parse(window.localStorage.getItem("interfaceLanguage")) || "ARM",
+        JSON.parse(window.localStorage.getItem("interfaceLanguage")) || "ENG",
       labels: appLabels,
       route: "home",
-      isSignedIn: false,
+      isSignedIn: !document.cookie ? false : true,
       direction: 0,
       searchBoxWord: "",
       searchedWord: {},
@@ -90,9 +90,9 @@ class App extends Component {
   };
 
   onRouteChange = (route) => {
-    // if (!document.cookie && this.state.isSignedIn === true) {
-    //   window.location.reload();
-    // }
+    if (!document.cookie && this.state.isSignedIn === true) {
+      window.location.reload();
+    }
     this.setState({ route: route });
     if (route !== "editTranslation") {
       this.reset();
