@@ -55,7 +55,7 @@ class Signin extends React.Component {
         
       <article className="br3 ba b--black-10 pa0 pa3-ns mv2 mv4-ns w-80 w-50-l mw8 mw6-ns shadow-5 center signinBox">
         <main className="pa3 pa4-ns mw6 center black-60">
-          <h1 className="f2 f1-m f1-l fw6">{title}</h1>
+          <h1 className="mv3 f2 f1-ns fw6">{title}</h1>
           <form className="measure" onSubmit={this.onSubmitSignIn}>
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               <div className="mt3">
