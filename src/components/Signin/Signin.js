@@ -35,20 +35,13 @@ class Signin extends React.Component {
         password: this.state.signInPassword,
       }),
     })
-    .then((response) => {
-      console.log("response", response);
-      console.log("response-cookies", response.cookies);
-      console.log("response-cookie", response.cookie);
-      if (response.status === 200) {
-        this.props.setLogIn(true);
-        return response
-      } 
-      else {
-        alert(this.state.labels[this.props.interfaceLanguage].error);
-      }
+    .then((response) => response.json())
+    .then((responseJSON) => {
+      console.log("aaa", responseJSON)
     })
-    .then((res)=>{res.json()})
-    .then((resjson)=>console.log(resjson));
+    .catch((error) => {
+      console.log(error, "error occurred");
+    });
   };
 
   render() {
