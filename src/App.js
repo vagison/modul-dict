@@ -100,15 +100,17 @@ class App extends Component {
   };
 
   setDirection = (direction, cb) => {
-    this.setState({ direction: direction }, cb());
+    cb
+      ? this.setState({ direction: direction }, cb())
+      : this.setState({ direction: direction });
   };
 
-  setWord = (id) => {
-    this.setState({ searchedWord: id });
+  setSearchedWord = (word) => {
+    this.setState({ searchedWord: word });
   };
 
-  setSearchBox = () => {
-    this.setState({ searchBoxWord: "filled" });
+  setSearchBoxState = (state) => {
+    this.setState({ searchBoxWord: state });
   };
 
   passTranslation = (translation) => {
@@ -125,8 +127,8 @@ class App extends Component {
         <div>
           <Search
             setDirection={this.setDirection}
-            setWord={this.setWord}
-            setSearchBox={this.setSearchBox}
+            setSearchedWord={this.setSearchedWord}
+            setSearchBoxState={this.setSearchBoxState}
             interfaceLanguage={this.state.interfaceLanguage}
             searchBoxWord={this.state.searchBoxWord}
           />
@@ -134,6 +136,7 @@ class App extends Component {
             onRouteChange={this.onRouteChange}
             passTranslation={this.passTranslation}
             setDirection={this.setDirection}
+            setSearchBoxState={this.setSearchBoxState}
             isSignedIn={this.state.isSignedIn}
             interfaceLanguage={this.state.interfaceLanguage}
             direction={this.state.direction}

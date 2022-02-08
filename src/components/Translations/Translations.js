@@ -39,10 +39,8 @@ class Translations extends React.Component {
       })
         .then((response) => response.json())
         .then((responseJSON) => {
-          this.props.setDirection(actualDirection, () => {});
-
+          this.props.setDirection(actualDirection);
           this.setSearchedWordType(responseJSON["type"]);
-
           this.loadTranslations(
             this.groupTranslations(
               responseJSON["translations"],
@@ -50,14 +48,14 @@ class Translations extends React.Component {
               this.props.direction
             )
           );
+          this.props.setSearchBoxState("");
         })
         .catch((error) => {
           console.log(error, "error occurred");
         });
-    } else if (
-      this.props.searchedWord !== prevProps.searchedWord &&
-      Object.keys(this.props.searchedWord).length === 0
-    ) {
+    }
+
+    else if (this.props.searchedWord !== prevProps.searchedWord && Object.keys(this.props.searchedWord).length === 0) {
       this.setState(initialState);
     }
   }
@@ -113,7 +111,6 @@ class Translations extends React.Component {
       englishAbbreviation,
       armenian,
       armenianAbbreviation,
-      // quality,
       fields,
       pronunciation,
       examples,
@@ -379,15 +376,18 @@ class Translations extends React.Component {
                     type="button"
                     onClick={() => {
                       this.deleteTranslation(() => {
-                        fetch("https://modul-dictionary-api.herokuapp.com/delete-translation", {
-                          method: "post",
-                          headers: { "Content-Type": "application/json" },
-                          credentials: "include",
-                          body: JSON.stringify({
-                            token: document.cookie.split("=", 2)[1],
-                            translationId: eachTranslation["translationId"],
-                          }),
-                        })
+                        fetch(
+                          "https://modul-dictionary-api.herokuapp.com/delete-translation",
+                          {
+                            method: "post",
+                            headers: { "Content-Type": "application/json" },
+                            credentials: "include",
+                            body: JSON.stringify({
+                              token: document.cookie.split("=", 2)[1],
+                              translationId: eachTranslation["translationId"],
+                            }),
+                          }
+                        )
                           .then((res) => {
                             this.setState({ status: res["status"] });
                           })

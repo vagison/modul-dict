@@ -14,9 +14,9 @@ This English-Armenian / Armenian-English technical dictionary includes more than
 0. First you have to install and configure the API for the project according to its instructions. The link to the repo is here `https://github.com/vagison/modul-dictionary-api`
 1. Then clone this repo
 2. In the project folder run `npm install`
-3. In all files of this project replace "https://modul-dictionary-api.herokuapp.com/" with "http://localhost:3000/" with any text editor
+3. With any text editor replace `https://modul-dictionary-api.herokuapp.com/` with `http://localhost:3000/` in all files of this project 
 4. Run the API (project from 0) at port 3000 (default) if you haven't done yet
-5. Within project folder run it with `npm start` (should warn that "Something (apparently the project API) is already running on port 3000", just press "Y" to run on a different port)
+5. Within project folder run it with `npm start` (should warn that "Something (apparently the API) is already running on port 3000", just press "Y" to run on a different port)
 6. Enjoy the project
 7. For making changes such as registering, deleting or updating of translations you need to sign-in with the following credentials: 
    `email: email@test.com`, `password: password`

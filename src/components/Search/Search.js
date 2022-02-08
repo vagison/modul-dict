@@ -53,9 +53,9 @@ class Search extends React.Component {
         {
           selectedWord,
         },
-        this.props.setSearchBox()
+        this.props.setSearchBoxState("filled")
       );
-      this.props.setWord(selectedWord);
+      this.props.setSearchedWord(selectedWord);
     }
   };
 
