@@ -215,7 +215,7 @@ const posLabels = {
 
 const fieldLabels = {
   ENG: {
-    1: "genreal",
+    1: "general",
     2: "structural engineering",
     3: "mechanical engineering",
     4: "electrical engineering",
