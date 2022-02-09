@@ -149,7 +149,7 @@ class AddTranslation extends React.Component {
       headers: { "Content-Type": "application/json" },
       credentials: "include",
       body: JSON.stringify({
-        token: document.cookie.split("=", 2)[1],
+        token: "HDaaxLrzb33aE9aOpXuRTNPQQsU9yeNB6eMXhBu3U3bdn9NXao",
         englishWord: this.state.englishWord,
         armenianWord: this.state.armenianWord,
         pos: this.state.pos["value"],
