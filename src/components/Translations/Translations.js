@@ -409,6 +409,7 @@ class Translations extends React.Component {
                                   ]["incorrectUser"]
                                 }`
                               );
+                              window.location.reload();
                             } else {
                               this.filterTranslation(
                                 eachTranslation["translationId"]

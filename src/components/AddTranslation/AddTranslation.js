@@ -178,6 +178,7 @@ class AddTranslation extends React.Component {
               this.state.labels[this.props.interfaceLanguage]["incorrectUser"]
             }`
           );
+          window.location.reload();
         } 
         else if (this.state.status === 500) {
           alert(
