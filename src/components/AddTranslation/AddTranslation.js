@@ -24,7 +24,7 @@ var x = (inputValue, callback) => {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      searchedPOS: inputValue,
+      searchedField: inputValue,
     }),
   })
     .then((resp) => {
