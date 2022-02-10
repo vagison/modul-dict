@@ -1,6 +1,7 @@
 import React from "react";
 import update from "react-addons-update";
 import AsyncSelect from "react-select/async";
+
 import { editTranslationLabels } from "../../util/labels/labels";
 import "./EditTranslation.css";
 
@@ -221,14 +222,16 @@ class EditTranslation extends React.Component {
         document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         this.props.setLogIn(false);
         this.props.onRouteChange("signin")
-      } 
+      }
+      // incorrect data
       else if (this.state.status === 500) {
         alert(
           `${
             this.state.labels[this.props.interfaceLanguage]["incorrectData"]
           }`
         );
-      } 
+      }
+      // successfully updated
       else {
         this.props.onRouteChange("home");
       }
