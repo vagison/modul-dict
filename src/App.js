@@ -87,10 +87,7 @@ class App extends Component {
     }
   };
 
-  onRouteChange = (route) => {
-    if (!document.cookie && this.state.isSignedIn === true) {
-      window.location.reload();
-    }
+  onRouteChange = (route) => {    
     this.setState({ route: route });
     if (route !== "editTranslation") {
       this.reset();
