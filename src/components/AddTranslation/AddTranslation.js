@@ -19,7 +19,7 @@ const initialState = {
   status: 0,
 };
 
-x = (inputValue, callback) => {
+var x = (inputValue, callback) => {
   fetch("https://modul-dictionary-api.herokuapp.com/search-pos", {
     method: "post",
     headers: { "Content-Type": "application/json" },
