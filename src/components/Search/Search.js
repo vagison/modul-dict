@@ -84,7 +84,7 @@ class Search extends React.Component {
           <h1 className="f3 f1-ns fw6">{title}</h1>
           <AsyncSelect
             className="input-reset ba bg-transparent w-100 asyncSelectField"
-            value={this.props.searchBoxWord ? this.state.selectedWord : ""}
+            value={this.props.searchBoxState ? this.state.selectedWord : ""}
             loadOptions={this.searchWord}
             styles={colourStyles}
             placeholder={searchPlaceholder}

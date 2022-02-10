@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import { appLabels } from "./util/labels/labels";
 import Navigation from "./components/Navigation/Navigation";
 import Signin from "./components/Signin/Signin";
@@ -20,7 +21,7 @@ class App extends Component {
       route: "home",
       isSignedIn: !document.cookie ? false : true,
       direction: 0,
-      searchBoxWord: "",
+      searchBoxState: "",
       searchedWord: {},
       currentTranslation: {},
     };
@@ -47,7 +48,7 @@ class App extends Component {
   reset = () => {
     this.setState({
       direction: 0,
-      searchBoxWord: "",
+      searchBoxState: "",
       searchedWord: {},
       currentTranslation: {},
     });
@@ -97,7 +98,7 @@ class App extends Component {
   };
 
   setSearchBoxState = (state) => {
-    this.setState({ searchBoxWord: state });
+    this.setState({ searchBoxState: state });
   };
 
   passTranslation = (translation) => {
@@ -120,7 +121,7 @@ class App extends Component {
             setSearchedWord={this.setSearchedWord}
             setSearchBoxState={this.setSearchBoxState}
             interfaceLanguage={this.state.interfaceLanguage}
-            searchBoxWord={this.state.searchBoxWord}
+            searchBoxState={this.state.searchBoxState}
           />
           <Translations
             onRouteChange={this.onRouteChange}
