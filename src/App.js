@@ -78,7 +78,6 @@ class App extends Component {
         } 
         else {
           alert(this.state.labels[this.state.interfaceLanguage]["logoutError"]);
-          window.location.reload();
         }
         this.onRouteChange("signin");
       });
