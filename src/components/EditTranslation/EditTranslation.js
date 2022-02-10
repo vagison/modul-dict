@@ -207,13 +207,16 @@ class EditTranslation extends React.Component {
           alert(
             `${this.state.labels[this.props.interfaceLanguage]["existingWord"]}`
           );
-        } else if (this.state.status === 401) {
+        } 
+        else if (this.state.status === 401) {
+          document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
           alert(
             `${
               this.state.labels[this.props.interfaceLanguage]["incorrectUser"]
             }`
           );
-        } else if (this.state.status === 500) {
+        } 
+        else if (this.state.status === 500) {
           alert(
             `${
               this.state.labels[this.props.interfaceLanguage]["incorrectData"]

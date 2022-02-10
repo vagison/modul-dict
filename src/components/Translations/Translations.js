@@ -401,6 +401,7 @@ class Translations extends React.Component {
                                 }`
                               );
                             } else if (this.state.status === 401) {
+                              document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                               alert(
                                 `${
                                   this.state.labels[
