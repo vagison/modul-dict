@@ -73,12 +73,10 @@ class App extends Component {
       })
       .then((response) => {
         document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        if (response.status === 200) {
-          this.setState({ isSignedIn: state });
-        } 
-        else {
+        this.setState({ isSignedIn: state });
+        if (response.status !== 200) {
           alert(this.state.labels[this.state.interfaceLanguage]["logoutError"]);
-        }
+        } 
       })
       .then(()=>{this.onRouteChange("signin");});
     }
