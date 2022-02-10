@@ -27,14 +27,9 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.isSignedIn === true && this.state.route === "signin") {
-      this.onRouteChange("home");
-    }
-
     if (
-      this.state.isSignedIn === false &&
-      (this.state.route === "addTranslation" ||
-        this.state.route === "editTranslation")
+      (this.state.isSignedIn === true && this.state.route === "signin") ||
+      (this.state.isSignedIn === false && (this.state.route === "addTranslation" || this.state.route === "editTranslation"))
     ) {
       this.onRouteChange("home");
     }
@@ -70,12 +65,12 @@ class App extends Component {
         body: JSON.stringify({
           token: document.cookie.split("=", 2)[1],
         }),
-      })
-      .then(() => {        
-        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      }).then(() => {
+        document.cookie =
+          "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         this.setState({ isSignedIn: state });
         this.onRouteChange("signin");
-      })
+      });
     }
     // sign in
     else if (state === true) {
@@ -84,7 +79,7 @@ class App extends Component {
     }
   };
 
-  onRouteChange = (route) => {    
+  onRouteChange = (route) => {
     this.setState({ route: route });
     if (route !== "editTranslation") {
       this.reset();
@@ -115,7 +110,7 @@ class App extends Component {
 
     // generated page
     var page;
-    
+
     // home page
     if (this.state.route === "home") {
       page = (
@@ -176,11 +171,7 @@ class App extends Component {
     }
     // about us page
     if (this.state.route === "aboutUs") {
-      page = (
-        <AboutUs
-          interfaceLanguage={this.state.interfaceLanguage}
-        />
-      );
+      page = <AboutUs interfaceLanguage={this.state.interfaceLanguage} />;
     }
 
     return (
