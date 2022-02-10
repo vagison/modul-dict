@@ -20,7 +20,7 @@ const initialState = {
 };
 
 var x = (inputValue, callback) => {
-  fetch("https://modul-dictionary-api.herokuapp.com/search-pos", {
+  fetch("https://modul-dictionary-api.herokuapp.com/search-field", {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
