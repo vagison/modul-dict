@@ -203,19 +203,21 @@ class EditTranslation extends React.Component {
         this.setState({ status: res["status"] });
       })
       .then(() => {
+        // existing word
         if (this.state.status === 304) {
           alert(
             `${this.state.labels[this.props.interfaceLanguage]["existingWord"]}`
           );
-        } 
+        }
+        // incorrect user
         else if (this.state.status === 401) {
-          document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
           alert(
             `${
               this.state.labels[this.props.interfaceLanguage]["incorrectUser"]
             }`
           );
-          window.location.reload();
+          document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          this.props.onRouteChange("signin")
         } 
         else if (this.state.status === 500) {
           alert(
@@ -223,7 +225,8 @@ class EditTranslation extends React.Component {
               this.state.labels[this.props.interfaceLanguage]["incorrectData"]
             }`
           );
-        } else {
+        } 
+        else {
           this.props.onRouteChange("home");
         }
       })

@@ -392,6 +392,7 @@ class Translations extends React.Component {
                             this.setState({ status: res["status"] });
                           })
                           .then(() => {
+                            // deleting error
                             if (this.state.status === 500) {
                               alert(
                                 `${
@@ -400,8 +401,10 @@ class Translations extends React.Component {
                                   ]["deletingError"]
                                 }`
                               );
-                            } else if (this.state.status === 401) {
-                              document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                            }
+
+                            // incorrect user
+                            else if (this.state.status === 401) {
                               alert(
                                 `${
                                   this.state.labels[
@@ -409,8 +412,10 @@ class Translations extends React.Component {
                                   ]["incorrectUser"]
                                 }`
                               );
-                              window.location.reload();
-                            } else {
+                              document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                              this.props.onRouteChange("signin")
+                            } 
+                            else {
                               this.filterTranslation(
                                 eachTranslation["translationId"]
                               );
