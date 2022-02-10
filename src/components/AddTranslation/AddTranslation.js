@@ -36,7 +36,7 @@ var x = (inputValue, callback) => {
         if (data.length) {
           data.forEach((element) => {
             tempArray.push({
-              label: element.pos,
+              label: element.field,
               value: element.id,
             });
           });
