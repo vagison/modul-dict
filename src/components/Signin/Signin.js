@@ -38,11 +38,11 @@ class Signin extends React.Component {
     .then((response) => {
       if (response.status === 200) {
         this.props.setLogIn(true);
-        return response
       } 
       else {
         alert(this.state.labels[this.props.interfaceLanguage].error);
       }
+      return response
     })
     .then((response)=>response.json())
     .then((responseJSON)=>{console.log("aaa", responseJSON);document.cookie = `token=${responseJSON.token}`});
