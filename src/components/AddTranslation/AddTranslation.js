@@ -19,6 +19,36 @@ const initialState = {
   status: 0,
 };
 
+x = (inputValue, callback) => {
+  fetch("https://modul-dictionary-api.herokuapp.com/search-pos", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      searchedPOS: inputValue,
+    }),
+  })
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((data) => {
+      const tempArray = [];
+      if (data) {
+        if (data.length) {
+          data.forEach((element) => {
+            tempArray.push({
+              label: element.pos,
+              value: element.id,
+            });
+          });
+        }
+      }
+      callback(tempArray);
+    })
+    .catch((error) => {
+      console.log(error, "error occurred");
+    });
+};
+
 class AddTranslation extends React.Component {
   constructor() {
     super();
@@ -37,35 +67,7 @@ class AddTranslation extends React.Component {
 
   // // part of speech
   // search part of speech
-  searchPOS = (inputValue, callback) => {
-    fetch("https://modul-dictionary-api.herokuapp.com/search-pos", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        searchedPOS: inputValue,
-      }),
-    })
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((data) => {
-        const tempArray = [];
-        if (data) {
-          if (data.length) {
-            data.forEach((element) => {
-              tempArray.push({
-                label: element.pos,
-                value: element.id,
-              });
-            });
-          }
-        }
-        callback(tempArray);
-      })
-      .catch((error) => {
-        console.log(error, "error occurred");
-      });
-  };
+  searchPOS = x
 
   // change part of speech
   onPOSChange = (currentlySelectedPOS) => {
