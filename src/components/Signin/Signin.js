@@ -49,6 +49,7 @@ class Signin extends React.Component {
   };
 
   render() {
+    // labels
     const { title, email, password, signIn } =
       this.state.labels[this.props.interfaceLanguage];
 

@@ -199,44 +199,48 @@ class EditTranslation extends React.Component {
         examples: this.state.examples,
       }),
     })
-      .then((res) => {
-        this.setState({ status: res["status"] });
-      })
-      .then(() => {
-        // existing word
-        if (this.state.status === 304) {
-          alert(
-            `${this.state.labels[this.props.interfaceLanguage]["existingWord"]}`
-          );
-        }
-        // incorrect user
-        else if (this.state.status === 401) {
-          alert(
-            `${
-              this.state.labels[this.props.interfaceLanguage]["incorrectUser"]
-            }`
-          );
-          document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-          this.props.setLogIn(false);
-          this.props.onRouteChange("signin")
-        } 
-        else if (this.state.status === 500) {
-          alert(
-            `${
-              this.state.labels[this.props.interfaceLanguage]["incorrectData"]
-            }`
-          );
-        } 
-        else {
-          this.props.onRouteChange("home");
-        }
-      })
-      .catch((error) => {
-        console.log(error, "error occurred");
-      });
+    // setting fetch status
+    .then((res) => {
+      this.setState({ status: res["status"] });
+    })
+    // handling cases
+    .then(() => {
+      // existing word
+      if (this.state.status === 304) {
+        alert(
+          `${this.state.labels[this.props.interfaceLanguage]["existingWord"]}`
+        );
+      }
+      // incorrect user
+      else if (this.state.status === 401) {
+        alert(
+          `${
+            this.state.labels[this.props.interfaceLanguage]["incorrectUser"]
+          }`
+        );
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        this.props.setLogIn(false);
+        this.props.onRouteChange("signin")
+      } 
+      else if (this.state.status === 500) {
+        alert(
+          `${
+            this.state.labels[this.props.interfaceLanguage]["incorrectData"]
+          }`
+        );
+      } 
+      else {
+        this.props.onRouteChange("home");
+      }
+    })
+    // catching errors
+    .catch((error) => {
+      console.log(error, "error occurred");
+    });
   };
 
   render() {
+    // labels
     const {
       title,
       englishWord,

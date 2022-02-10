@@ -110,10 +110,13 @@ class App extends Component {
   };
 
   render() {
+    // labels
     document.title = this.state.labels[this.state.interfaceLanguage]["title"];
 
+    // generated page
     var page;
-
+    
+    // home page
     if (this.state.route === "home") {
       page = (
         <div>
@@ -138,6 +141,7 @@ class App extends Component {
         </div>
       );
     }
+    // signin page
     if (this.state.route === "signin") {
       page = (
         <Signin
@@ -146,6 +150,7 @@ class App extends Component {
         />
       );
     }
+    // add translation page
     if (this.state.route === "addTranslation") {
       page = (
         <AddTranslation
@@ -155,6 +160,7 @@ class App extends Component {
         />
       );
     }
+    // edit translation page
     if (
       this.state.route === "editTranslation" &&
       this.state.currentTranslation.length !== 0
@@ -168,6 +174,7 @@ class App extends Component {
         />
       );
     }
+    // about us page
     if (this.state.route === "aboutUs") {
       page = (
         <AboutUs
@@ -178,6 +185,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        {/* navigation component */}
         <Navigation
           isSignedIn={this.state.isSignedIn}
           interfaceLanguage={this.state.interfaceLanguage}
@@ -188,9 +196,15 @@ class App extends Component {
           setLogIn={this.setLogIn}
           setLogOut={this.setLogOut}
         />
+
         <div style={{ clear: "both" }}></div>
+
+        {/* generated page */}
         <div className="mv2 mv4-ns mt5-l">{page}</div>
+
         <div style={{ clear: "both" }}></div>
+
+        {/* footer component */}
         <Footer interfaceLanguage={this.state.interfaceLanguage} />
       </div>
     );

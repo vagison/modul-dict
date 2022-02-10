@@ -37,22 +37,22 @@ class Translations extends React.Component {
           direction: actualDirection,
         }),
       })
-        .then((response) => response.json())
-        .then((responseJSON) => {
-          this.props.setDirection(actualDirection);
-          this.setSearchedWordType(responseJSON["type"]);
-          this.loadTranslations(
-            this.groupTranslations(
-              responseJSON["translations"],
-              this.props.searchedWord["label"],
-              this.props.direction
-            )
-          );
-          this.props.setSearchBoxState("");
-        })
-        .catch((error) => {
-          console.log(error, "error occurred");
-        });
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        this.props.setDirection(actualDirection);
+        this.setSearchedWordType(responseJSON["type"]);
+        this.loadTranslations(
+          this.groupTranslations(
+            responseJSON["translations"],
+            this.props.searchedWord["label"],
+            this.props.direction
+          )
+        );
+        this.props.setSearchBoxState("");
+      })
+      .catch((error) => {
+        console.log(error, "error occurred");
+      });
     }
 
     else if (this.props.searchedWord !== prevProps.searchedWord && Object.keys(this.props.searchedWord).length === 0) {
@@ -104,6 +104,7 @@ class Translations extends React.Component {
   };
 
   render() {
+    // labels
     const {
       translations,
       partOfSpeech,
@@ -388,40 +389,46 @@ class Translations extends React.Component {
                             }),
                           }
                         )
-                          .then((res) => {
-                            this.setState({ status: res["status"] });
-                          })
-                          .then(() => {
-                            // deleting error
-                            if (this.state.status === 500) {
-                              alert(
-                                `${
-                                  this.state.labels[
-                                    this.props.interfaceLanguage
-                                  ]["deletingError"]
-                                }`
-                              );
-                            }
-                            // incorrect user
-                            else if (this.state.status === 401) {
-                              alert(
-                                `${
-                                  this.state.labels[
-                                    this.props.interfaceLanguage
-                                  ]["incorrectUser"]
-                                }`
-                              );
-                              document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                              this.props.setLogIn(false);
-                              this.props.onRouteChange("signin")
-                            } 
-                            // successfully deleted
-                            else {
-                              this.filterTranslation(
-                                eachTranslation["translationId"]
-                              );
-                            }
-                          });
+                        // setting fetch status                          
+                        .then((res) => {
+                          this.setState({ status: res["status"] });
+                        })
+                        // handling cases
+                        .then(() => {
+                          // deleting error
+                          if (this.state.status === 500) {
+                            alert(
+                              `${
+                                this.state.labels[
+                                  this.props.interfaceLanguage
+                                ]["deletingError"]
+                              }`
+                            );
+                          }
+                          // incorrect user
+                          else if (this.state.status === 401) {
+                            alert(
+                              `${
+                                this.state.labels[
+                                  this.props.interfaceLanguage
+                                ]["incorrectUser"]
+                              }`
+                            );
+                            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                            this.props.setLogIn(false);
+                            this.props.onRouteChange("signin")
+                          } 
+                          // successfully deleted
+                          else {
+                            this.filterTranslation(
+                              eachTranslation["translationId"]
+                            );
+                          }
+                        })
+                        // catching errors
+                        .catch((error) => {
+                          console.log(error, "error occurred");
+                        });
                       });
                     }}
                   >
