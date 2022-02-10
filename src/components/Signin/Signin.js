@@ -45,7 +45,7 @@ class Signin extends React.Component {
       }
     })
     .then((response)=>response.json())
-    .then((responseJSON)=>{document.cookie = `token=${responseJSON.token}`});
+    .then((responseJSON)=>{console.log("aaa", responseJSON);document.cookie = `token=${responseJSON.token}`});
   };
 
   render() {
