@@ -79,8 +79,8 @@ class App extends Component {
         else {
           alert(this.state.labels[this.state.interfaceLanguage]["logoutError"]);
         }
-        this.onRouteChange("signin");
-      });
+      })
+      .then(()=>{this.onRouteChange("signin");});
     }
     // sign in
     else if (state === true) {
