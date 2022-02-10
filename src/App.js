@@ -75,15 +75,12 @@ class App extends Component {
         document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         if (response.status === 200) {
           this.setState({ isSignedIn: state });
-          this.onRouteChange("signin");
         } 
         else {
           alert(this.state.labels[this.state.interfaceLanguage]["logoutError"]);
-
-          if (!document.cookie && this.state.isSignedIn === true) {
-            window.location.reload();
-          }
+          window.location.reload();
         }
+        this.onRouteChange("signin");
       });
     }
     // sign in
