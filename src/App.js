@@ -71,14 +71,11 @@ class App extends Component {
           token: document.cookie.split("=", 2)[1],
         }),
       })
-      .then((response) => {
-        if (response.status !== 200) {
-          alert(this.state.labels[this.state.interfaceLanguage]["logoutError"]);
-        }
+      .then(() => {        
         document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         this.setState({ isSignedIn: state });
+        this.onRouteChange("signin");
       })
-      .then(()=>{this.onRouteChange("signin");});
     }
     // sign in
     else if (state === true) {

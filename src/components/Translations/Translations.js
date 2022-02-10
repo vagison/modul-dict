@@ -402,7 +402,6 @@ class Translations extends React.Component {
                                 }`
                               );
                             }
-
                             // incorrect user
                             else if (this.state.status === 401) {
                               alert(
@@ -416,6 +415,7 @@ class Translations extends React.Component {
                               this.props.setLogIn(false);
                               this.props.onRouteChange("signin")
                             } 
+                            // successfully deleted
                             else {
                               this.filterTranslation(
                                 eachTranslation["translationId"]
