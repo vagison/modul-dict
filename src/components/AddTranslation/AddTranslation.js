@@ -19,10 +19,6 @@ const initialState = {
   status: 0,
 };
 
-var x = (event) => {
-  this.setState({ [event.target.name]: event.target.value });
-};
-
 class AddTranslation extends React.Component {
   constructor() {
     super();
@@ -35,7 +31,9 @@ class AddTranslation extends React.Component {
   }
 
   // // parameter change
-  onParamChange = x
+  onParamChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
   // // part of speech
   // search part of speech
