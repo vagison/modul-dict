@@ -180,6 +180,7 @@ class AddTranslation extends React.Component {
             }`
           );
           document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          this.props.setLogIn(false);
           this.props.onRouteChange("signin")
         }
         // incorrect data
@@ -189,7 +190,8 @@ class AddTranslation extends React.Component {
               this.state.labels[this.props.interfaceLanguage]["incorrectData"]
             }`
           );
-        } 
+        }
+        // successfully deleted
         else {
           this.resetFields();
         }

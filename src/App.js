@@ -129,6 +129,7 @@ class App extends Component {
           />
           <Translations
             onRouteChange={this.onRouteChange}
+            setLogIn={this.setLogIn}
             passTranslation={this.passTranslation}
             setDirection={this.setDirection}
             setSearchBoxState={this.setSearchBoxState}
@@ -143,7 +144,6 @@ class App extends Component {
     if (this.state.route === "signin") {
       page = (
         <Signin
-          // onRouteChange={this.onRouteChange}
           setLogIn={this.setLogIn}
           interfaceLanguage={this.state.interfaceLanguage}
         />
@@ -153,6 +153,7 @@ class App extends Component {
       page = (
         <AddTranslation
           onRouteChange={this.onRouteChange}
+          setLogIn={this.setLogIn}
           interfaceLanguage={this.state.interfaceLanguage}
         />
       );
@@ -163,8 +164,8 @@ class App extends Component {
     ) {
       page = (
         <EditTranslation
-          // reset={this.reset}
           onRouteChange={this.onRouteChange}
+          setLogIn={this.setLogIn}
           interfaceLanguage={this.state.interfaceLanguage}
           currentTranslation={this.state.currentTranslation}
         />
@@ -173,7 +174,6 @@ class App extends Component {
     if (this.state.route === "aboutUs") {
       page = (
         <AboutUs
-          // reset={this.reset}
           interfaceLanguage={this.state.interfaceLanguage}
         />
       );
