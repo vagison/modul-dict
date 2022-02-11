@@ -120,8 +120,13 @@ class AddTranslation extends React.Component {
 
   // // examples
   // append examples
-  appendExamples = (fnc) => {
-    fnc();
+  appendExamples = () => {
+    this.setState({
+      examples: this.state.examples.concat({
+        englishExample: "",
+        armenianExample: "",
+      }),
+    });
   };
 
   // armenian example change
@@ -401,20 +406,11 @@ class AddTranslation extends React.Component {
                 </div>
               ))}
 
-              {/* append example */}
+              {/* append examples */}
               <button
                 className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib ma2"
                 type="button"
-                onClick={() => {
-                  this.appendExamples(() => {
-                    this.setState({
-                      examples: this.state.examples.concat({
-                        englishExample: "",
-                        armenianExample: "",
-                      }),
-                    });
-                  });
-                }}
+                onClick={this.appendExamples}
               >
                 {addExamples}
               </button>

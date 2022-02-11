@@ -272,6 +272,7 @@ class EditTranslation extends React.Component {
         <main className="pa3 pa4-ns mw6 center black-60">
           <h1 className="f3 f1-ns fw6">{title}</h1>
           <form className="" onSubmit={this.updateTranslation}>
+            {/* translation fields */}
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               {/* english word */}
               <div className="mt3">
@@ -445,13 +446,7 @@ class EditTranslation extends React.Component {
               <button
                 className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib ma2"
                 type="button"
-                onClick={
-
-                  this.appendExamples
-                    
-
-
-                }
+                onClick={this.appendExamples}
               >
                 {addExamples}
               </button>
@@ -459,6 +454,7 @@ class EditTranslation extends React.Component {
 
             {/* reset fields and update translation buttons */}
             <div className="buttonBox">
+              {/* reset fields */}
               <button
                 className="b ph3 mr1 pv2 input-reset ba b--black-10 bg-transparent bg-light-yellow grow pointer f5 dib"
                 type="button"
@@ -466,7 +462,7 @@ class EditTranslation extends React.Component {
               >
                 {resetFields}
               </button>
-
+              {/* update translation */}
               <button
                 className="b ph3 ml1 pv2 input-reset ba b--black-10 bg-transparent bg-light-blue grow pointer f5 dib"
                 type="submit"
