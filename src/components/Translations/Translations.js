@@ -48,7 +48,6 @@ class Translations extends React.Component {
             this.props.direction
           )
         );
-        this.props.setSearchBoxState("");
       })
       .catch((error) => {
         console.log(error, "error occurred");

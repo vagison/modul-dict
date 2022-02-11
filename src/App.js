@@ -21,7 +21,6 @@ class App extends Component {
       route: "home",
       isSignedIn: !document.cookie ? false : true,
       direction: 0,
-      searchBoxState: "",
       searchedWord: {},
       currentTranslation: {},
     };
@@ -48,7 +47,6 @@ class App extends Component {
   reset = () => {
     this.setState({
       direction: 0,
-      searchBoxState: "",
       searchedWord: {},
       currentTranslation: {},
     });
@@ -97,10 +95,6 @@ class App extends Component {
     this.setState({ searchedWord: word });
   };
 
-  setSearchBoxState = (state) => {
-    this.setState({ searchBoxState: state });
-  };
-
   passTranslation = (translation) => {
     this.setState({ currentTranslation: translation });
   };
@@ -119,16 +113,13 @@ class App extends Component {
           <Search
             setDirection={this.setDirection}
             setSearchedWord={this.setSearchedWord}
-            setSearchBoxState={this.setSearchBoxState}
             interfaceLanguage={this.state.interfaceLanguage}
-            searchBoxState={this.state.searchBoxState}
           />
           <Translations
             onRouteChange={this.onRouteChange}
             setLogIn={this.setLogIn}
             passTranslation={this.passTranslation}
             setDirection={this.setDirection}
-            setSearchBoxState={this.setSearchBoxState}
             isSignedIn={this.state.isSignedIn}
             interfaceLanguage={this.state.interfaceLanguage}
             direction={this.state.direction}
