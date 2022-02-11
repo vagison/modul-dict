@@ -69,10 +69,10 @@ class AddTranslation extends React.Component {
   };
 
   // change part of speech
-  onPOSChange = (currentlySelectedPOS) => {
-    if (currentlySelectedPOS) {
+  onPOSChange = (selectedPOS) => {
+    if (selectedPOS) {
       this.setState({
-        pos: currentlySelectedPOS,
+        pos: selectedPOS,
       });
     }
   };
@@ -110,10 +110,10 @@ class AddTranslation extends React.Component {
   };
 
   // change field
-  onFieldChange = (fields) => {
-    if (fields) {
+  onFieldChange = (selectedFields) => {
+    if (selectedFields) {
       this.setState({
-        fields,
+        fields: selectedFields,
       });
     }
   };
