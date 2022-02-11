@@ -67,7 +67,6 @@ class AddTranslation extends React.Component {
         console.log(error, "error occurred");
       });
   };
-
   // change part of speech
   onPOSChange = (selectedPOS) => {
     if (selectedPOS) {
@@ -108,7 +107,6 @@ class AddTranslation extends React.Component {
         console.log(error, "error occurred");
       });
   };
-
   // change field
   onFieldChange = (selectedFields) => {
     if (selectedFields) {
@@ -128,7 +126,6 @@ class AddTranslation extends React.Component {
       }),
     });
   };
-
   // armenian example change
   onArmenianExampleChange = (event) => {
     this.setState({
@@ -137,7 +134,6 @@ class AddTranslation extends React.Component {
       }),
     });
   };
-
   // english example change
   onEnglishExampleChange = (event) => {
     this.setState({
