@@ -26,6 +26,7 @@ class App extends Component {
     };
   }
 
+  // checking for route and logged-in status changes
   componentDidUpdate() {
     if (
       (this.state.isSignedIn === true && this.state.route === "signin") ||
@@ -35,6 +36,7 @@ class App extends Component {
     }
   }
 
+  // changing interface language
   changeInterfaceLanguage = (language) => {
     window.localStorage.setItem("interfaceLanguage", JSON.stringify(language));
     this.setState({
@@ -44,6 +46,7 @@ class App extends Component {
     });
   };
 
+  // reseting component attributes to initial ones
   reset = () => {
     this.setState({
       direction: 0,
@@ -52,9 +55,11 @@ class App extends Component {
     });
   };
 
+  // handling log-in and log-out
   setLogIn = (state) => {
     // sign out
     if (state === false) {
+      // signing out from back-end
       fetch("https://modul-dictionary-api.herokuapp.com/signout", {
         method: "post",
         headers: {
@@ -64,11 +69,16 @@ class App extends Component {
         body: JSON.stringify({
           token: document.cookie.split("=", 2)[1],
         }),
-      }).then(() => {
-        document.cookie =
-          "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      })
+      // destroying cookies and redirecting to signin page
+      .then(() => {
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         this.setState({ isSignedIn: state });
         this.onRouteChange("signin");
+      })      
+      // catching errors
+      .catch((error) => {
+        console.log(error, "error occurred");
       });
     }
     // sign in
@@ -78,6 +88,7 @@ class App extends Component {
     }
   };
 
+  // hangling route changes
   onRouteChange = (route) => {
     this.setState({ route: route });
     if (route !== "editTranslation") {
@@ -85,17 +96,18 @@ class App extends Component {
     }
   };
 
-  setDirection = (direction, cb) => {
-    cb
-      ? this.setState({ direction: direction }, cb())
-      : this.setState({ direction: direction });
+  // setting translation's direction
+  setDirection = (direction) => {
+    this.setState({ direction: direction });
   };
 
+  // setting searched word
   setSearchedWord = (word) => {
     this.setState({ searchedWord: word });
   };
 
-  passTranslation = (translation) => {
+  // setting selected translation
+  setSelectedTranslation = (translation) => {
     this.setState({ currentTranslation: translation });
   };
 
@@ -103,7 +115,7 @@ class App extends Component {
     // labels
     document.title = this.state.labels[this.state.interfaceLanguage]["title"];
 
-    // generated page
+    // page component
     var page;
 
     // home page
@@ -111,19 +123,19 @@ class App extends Component {
       page = (
         <div>
           <Search
+            interfaceLanguage={this.state.interfaceLanguage}
             setDirection={this.setDirection}
             setSearchedWord={this.setSearchedWord}
-            interfaceLanguage={this.state.interfaceLanguage}
           />
           <Translations
-            onRouteChange={this.onRouteChange}
-            setLogIn={this.setLogIn}
-            passTranslation={this.passTranslation}
-            setDirection={this.setDirection}
-            isSignedIn={this.state.isSignedIn}
             interfaceLanguage={this.state.interfaceLanguage}
+            isSignedIn={this.state.isSignedIn}
             direction={this.state.direction}
             searchedWord={this.state.searchedWord}
+            onRouteChange={this.onRouteChange}
+            setLogIn={this.setLogIn}
+            setDirection={this.setDirection}
+            setSelectedTranslation={this.setSelectedTranslation}
           />
         </div>
       );
@@ -132,8 +144,8 @@ class App extends Component {
     if (this.state.route === "signin") {
       page = (
         <Signin
-          setLogIn={this.setLogIn}
           interfaceLanguage={this.state.interfaceLanguage}
+          setLogIn={this.setLogIn}
         />
       );
     }
@@ -141,9 +153,9 @@ class App extends Component {
     if (this.state.route === "addTranslation") {
       page = (
         <AddTranslation
+          interfaceLanguage={this.state.interfaceLanguage}
           onRouteChange={this.onRouteChange}
           setLogIn={this.setLogIn}
-          interfaceLanguage={this.state.interfaceLanguage}
         />
       );
     }
@@ -154,10 +166,10 @@ class App extends Component {
     ) {
       page = (
         <EditTranslation
-          onRouteChange={this.onRouteChange}
-          setLogIn={this.setLogIn}
           interfaceLanguage={this.state.interfaceLanguage}
           currentTranslation={this.state.currentTranslation}
+          onRouteChange={this.onRouteChange}
+          setLogIn={this.setLogIn}
         />
       );
     }
@@ -182,7 +194,7 @@ class App extends Component {
 
         <div style={{ clear: "both" }}></div>
 
-        {/* generated page */}
+        {/* page component */}
         <div className="mv2 mv4-ns mt5-l">{page}</div>
 
         <div style={{ clear: "both" }}></div>

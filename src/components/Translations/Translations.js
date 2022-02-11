@@ -1,13 +1,16 @@
 import React from "react";
+
 import {
+  translationsLabels,
   posLabels,
   fieldLabels,
-  translationsLabels,
 } from "../../util/labels/labels";
 import "./Translations.css";
 
 const initialState = {
   labels: translationsLabels,
+  posLabels: posLabels,
+  fieldLabels: fieldLabels,
   status: 0,
   translations: [],
   type: "",
@@ -24,11 +27,13 @@ class Translations extends React.Component {
       this.props.searchedWord !== prevProps.searchedWord &&
       Object.keys(this.props.searchedWord).length !== 0
     ) {
+      // calculating actual direction
       const engChars = new RegExp("[\u0041-\u005a\u0061-\u007a]");
       const actualDirection = engChars.test(this.props.searchedWord["label"])
         ? 1
         : 0;
-
+      
+      // searching for translations
       fetch("https://modul-dictionary-api.herokuapp.com/search-translation", {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -38,6 +43,7 @@ class Translations extends React.Component {
         }),
       })
       .then((response) => response.json())
+      // grouping translations
       .then((responseJSON) => {
         this.props.setDirection(actualDirection);
         this.setSearchedWordType(responseJSON["type"]);
@@ -49,6 +55,7 @@ class Translations extends React.Component {
           )
         );
       })
+      // catching errors
       .catch((error) => {
         console.log(error, "error occurred");
       });
@@ -126,19 +133,17 @@ class Translations extends React.Component {
             <div className="eachTranslationBox" key={index}>
               <hr />
 
+              {/* part of speech */}
               {eachTranslation.pos["label"] !== "none" ? (
                 <p>
                   <b>{partOfSpeech}</b>{" "}
                   {
-                    posLabels[this.props.interfaceLanguage][
-                      eachTranslation.pos["value"]
-                    ]
+                    this.state.posLabels[this.props.interfaceLanguage][eachTranslation.pos["value"]]
                   }
                 </p>
-              ) : (
-                ""
-              )}
+              ) : ("")}
 
+              {/* word and abbreviation */}
               {this.props.direction === 0 ? (
                 <div>
                   {this.state.type === "word" ? (
@@ -273,6 +278,7 @@ class Translations extends React.Component {
                 </div>
               )}
 
+              {/* pronunciation */}
               {eachTranslation["pronunciation"] ? (
                 <p>
                   <b>{pronunciation}</b>
@@ -281,7 +287,8 @@ class Translations extends React.Component {
               ) : (
                 ""
               )}
-
+              
+              {/* fields */}
               {eachTranslation["fields"] ? (
                 <p>
                   <b>{fields}</b>{" "}
@@ -303,7 +310,8 @@ class Translations extends React.Component {
                   {fieldLabels[this.props.interfaceLanguage][1]}
                 </p>
               )}
-
+              
+              {/* examples */}
               {eachTranslation["examples"] ? (
                 <div className="examplesBox">
                   <p>
@@ -359,18 +367,21 @@ class Translations extends React.Component {
                 ""
               )}
 
+              {/* edit or remove buttons */}
               {this.props.isSignedIn ? (
                 <div className="buttonBox">
+                  {/* edit button */}
                   <button
                     className="b ph3 pv2 mr1 input-reset ba b--black-10 bg-transparent bg-light-green grow pointer f5 dib"
                     type="button"
                     onClick={() => {
-                      this.props.passTranslation(eachTranslation);
+                      this.props.setSelectedTranslation(eachTranslation);
                       this.props.onRouteChange("editTranslation");
                     }}
                   >
                     {editTranslation}
                   </button>
+                  {/* remove button */}
                   <button
                     className="b ph3 pv2 ml1 input-reset ba b--black-10 bg-transparent bg-light-red grow pointer f5 dib"
                     type="button"

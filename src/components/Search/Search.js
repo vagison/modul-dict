@@ -21,50 +21,50 @@ class Search extends React.Component {
           searchedWord: inputValue,
         }),
       })
-        .then((resp) => {
-          return resp.json();
-        })
-        .then((data) => {
-          this.props.setDirection(data["direction"], () => {
-            const tempArray = [];
-            if (data["collection"]) {
-              if (data["collection"].length !== 0) {
-                data["collection"].forEach((element) => {
-                  tempArray.push({
-                    type: element.type,
-                    label: element.label,
-                    value: element.ids,
-                  });
-                });
-              }
-            }
-            callback(tempArray);
-          });
-        })
-        .catch((error) => {
-          console.log(error, "error occurred");
-        });
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((data) => {
+        this.props.setDirection(data["direction"]);
+        return data
+      })
+      .then((data) => {
+        const tempArray = [];
+        if (data["collection"]) {
+          if (data["collection"].length !== 0) {
+            data["collection"].forEach((element) => {
+              tempArray.push({
+                type: element.type,
+                label: element.label,
+                value: element.ids,
+              });
+            });
+          }
+        }
+        callback(tempArray);
+      })
+      .catch((error) => {
+        console.log(error, "error occurred");
+      });
     }
   };
 
   onWordSelect = (selectedWord) => {
     if (selectedWord !== "") {
-      this.setState(
-        {
-          selectedWord,
-        },
-      );
+      this.setState({selectedWord});
       this.props.setSearchedWord(selectedWord);
     }
   };
 
   render() {
+    // labels
     const { title, searchPlaceholder } =
       this.state.labels[this.props.interfaceLanguage];
 
-    const colourStyles = {
+    // word type coloring style (word and abbreviation)
+    const wordTypeStyles = {
       control: (styles) => ({ ...styles, backgroundColor: "green" }),
-      option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      option: (styles, { data, isFocused }) => {
         const color = "#ffffff00";
         return {
           ...styles,
@@ -85,7 +85,7 @@ class Search extends React.Component {
             className="input-reset ba bg-transparent w-100 asyncSelectField"
             value={""}
             loadOptions={this.searchWord}
-            styles={colourStyles}
+            styles={wordTypeStyles}
             placeholder={searchPlaceholder}
             onChange={(selectedWord) => {
               this.onWordSelect(selectedWord);
