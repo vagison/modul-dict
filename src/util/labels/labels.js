@@ -132,7 +132,7 @@ const editTranslationLabels = {
     englishExampleNo: "Անգլերեն օրինակ No. ",
     armenianExampleNo: "Հայերեն օրինակ No. ",
     addExamples: "ավելացնել օրինակներ",
-    resetFields: "Վերականգնել դաշտերը",
+    resetFields: "Վերականգնել",
     updateTranslation: "Թարմացնել",
     incorrectUser: `
         Տվյալները փոփոխելու համար խնդրում ենք մուտք 

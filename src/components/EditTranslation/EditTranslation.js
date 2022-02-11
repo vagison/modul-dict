@@ -154,8 +154,13 @@ class EditTranslation extends React.Component {
 
   // // examples
   // append examples
-  appendExamples = (fnc) => {
-    fnc();
+  appendExamples = () => {
+    this.setState({
+      examples: this.state.examples.concat({
+        englishExample: "",
+        armenianExample: "",
+      }),
+    });
   };
 
   // armenian example change
@@ -402,7 +407,7 @@ class EditTranslation extends React.Component {
                 />
               </div>
 
-              {/* examples */}
+              {/* existing examples */}
               {this.state.examples.map((example, idx) => (
                 <div key={idx}>
                   <div className="mt3">
@@ -436,25 +441,23 @@ class EditTranslation extends React.Component {
                 </div>
               ))}
 
-              {/* append example */}
+              {/* append examples */}
               <button
                 className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib ma2"
                 type="button"
-                onClick={() => {
-                  this.appendExamples(() => {
-                    this.setState({
-                      examples: this.state.examples.concat({
-                        englishExample: "",
-                        armenianExample: "",
-                      }),
-                    });
-                  });
-                }}
+                onClick={
+
+                  this.appendExamples
+                    
+
+
+                }
               >
                 {addExamples}
               </button>
             </fieldset>
 
+            {/* reset fields and update translation buttons */}
             <div className="buttonBox">
               <button
                 className="b ph3 mr1 pv2 input-reset ba b--black-10 bg-transparent bg-light-yellow grow pointer f5 dib"
