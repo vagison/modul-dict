@@ -39,9 +39,7 @@ class Signin extends React.Component {
       if (response.status === 200) {
         var token = response.headers.get('token');
         var tokenExpiration = response.headers.get('token-expiration');
-        document.cookie = `token=${token}; expires=${new Date(
-          new Date().getTime() + 365 * 24 * 60 * 60 * 1000
-        )}`;
+        document.cookie = `token=${token}; expires=${tokenExpiration}`;
         this.props.setLogIn(true);
       } 
       else {
