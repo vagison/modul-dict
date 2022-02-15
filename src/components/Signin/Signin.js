@@ -54,7 +54,7 @@ class Signin extends React.Component {
       this.state.labels[this.props.interfaceLanguage];
 
     return (
-      <article className="br3 ba b--black-10 pa0 pa3-ns mv2 mv4-ns w-80 w-50-l mw8 mw6-ns shadow-5 center signinBox">
+      <article className="br3 ba b--black-10 pa3-ns mv2 mv4-ns w-80 w-50-l mw8 mw6-ns shadow-5 center signinBox">
         <main className="pa3 pa4-ns mw6 center black-60">
           <h1 className="mv3 f3 f1-ns fw6">{title}</h1>
           <form className="measure" onSubmit={this.onSubmitSignIn}>

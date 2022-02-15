@@ -91,7 +91,7 @@ const Navigation = ({
 
         <div className="interfaceLanguageBox">
           <div
-            className={"f4 f3-ns link black-60 pa2 pa3-ns ma0 pointer interfaceLanguageEnglish".concat(
+            className={"f4 f3-ns link black-60 pa2 ma0 pointer interfaceLanguageEnglish".concat(
               interfaceLanguage === "ENG" ? "" : " interfaceInactiveLanguage"
             )}
             onClick={() => changeInterfaceLanguage("ENG")}
@@ -100,7 +100,7 @@ const Navigation = ({
             {GreatBritainFlag()}
           </div>
           <div
-            className={"f4 f3-ns link black-60 pa2 pa3-ns ma0 pointer interfaceLanguageArmenian".concat(
+            className={"f4 f3-ns link black-60 pa2 ma0 pointer interfaceLanguageArmenian".concat(
               interfaceLanguage === "ARM" ? "" : " interfaceInactiveLanguage"
             )}
             onClick={() => changeInterfaceLanguage("ARM")}
