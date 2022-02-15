@@ -390,7 +390,7 @@ class EditTranslation extends React.Component {
               </div>
 
               {/* abbreviation armenian */}
-              <div className="mb3">
+              <div>
                 <label className="db fw6 lh-copy f6">
                   {armenianAbbreviation}
                 </label>
