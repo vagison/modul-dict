@@ -21,8 +21,6 @@ const Footer = ({
         target="_blank"
       >
         <span>© {new Date().getFullYear()} {organization} | {rights}</span>
-        {/* <br/> */}
-        {/* <b>© {new Date().getFullYear()} {organization}</b> */}
       </a>
     </div>
   );
