@@ -173,7 +173,7 @@ const navigationLabels = {
 const searchLabels = {
   ENG: {
     title: "Search word",
-    searchPlaceholder: "A word or phrase",
+    searchPlaceholder: "A word or a phrase",
   },
   ARM: {
     title: "Որոնել բառը",
