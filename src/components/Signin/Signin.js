@@ -59,7 +59,7 @@ class Signin extends React.Component {
           <h1 className="mv3 f3 f1-ns fw6">{title}</h1>
           <form className="measure" onSubmit={this.onSubmitSignIn}>
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-              <div className="mt3">
+              <div className="mt3-ns">
                 <label className="db fw6 lh-copy f6" htmlFor="email-address">
                   {email}
                 </label>
