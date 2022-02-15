@@ -265,7 +265,7 @@ class EditTranslation extends React.Component {
 
     return (
       <article className="br3 ba b--black-10 pa3-ns mb4 mv2-ns w-90 w-80-m w-60-l mw7 shadow-5 center editTranslationBox">
-        <main className="pa3 pa4-ns mw6 center black-60">
+        <main className="pa3 pv2 pa4-ns pv2-ns center black-60">
           <h1 className="f3 f1-ns fw6">{title}</h1>
           <form className="" onSubmit={this.updateTranslation}>
             {/* translation fields */}
