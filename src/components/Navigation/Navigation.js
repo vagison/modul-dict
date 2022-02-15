@@ -73,7 +73,7 @@ const Navigation = ({
           {isSignedIn === false ? (
             <p
               onClick={() => onRouteChange("signin")}
-              className={"f3 link dim black-60 pa3 ma0 pointer".concat(
+              className={"f4 f3-ns link dim black-60 pa2 pa3-ns ma0 pointer".concat(
                 route === "signin" ? " bg-navy white" : ""
               )}
             >
@@ -82,7 +82,7 @@ const Navigation = ({
           ) : (
             <p
               onClick={() => setLogIn(false)}
-              className={"f3 link dim black-60 pa3 ma0 pointer"}
+              className={"f4 f3-ns link dim black-60 pa2 pa3-ns ma0 pointer"}
             >
               {logOut}
             </p>
@@ -91,7 +91,7 @@ const Navigation = ({
 
         <div className="interfaceLanguageBox">
           <div
-            className={"f3 link dim black-60 pa2 ma0 pointer interfaceLanguageEnglish".concat(
+            className={"f4 f3-ns link dim black-60 pa2 pa3-ns ma0 pointer interfaceLanguageEnglish".concat(
               interfaceLanguage === "ENG" ? "" : " interfaceInactiveLanguage"
             )}
             onClick={() => changeInterfaceLanguage("ENG")}
@@ -99,7 +99,7 @@ const Navigation = ({
             {USFlag()} / {GreatBritainFlag()}
           </div>
           <div
-            className={"f3 link dim black-6 pa2 ma0 pointer interfaceLanguageArmenian".concat(
+            className={"f4 f3-ns link dim black-60 pa2 pa3-ns ma0 pointer interfaceLanguageArmenian".concat(
               interfaceLanguage === "ARM" ? "" : " interfaceInactiveLanguage"
             )}
             onClick={() => changeInterfaceLanguage("ARM")}
