@@ -60,7 +60,7 @@ class Search extends React.Component {
 
   render() {
     // labels
-    const { title, searchPlaceholder } =
+    const { searchPlaceholder } =
       this.state.labels[this.props.interfaceLanguage];
 
     // word type coloring style (word and abbreviation)
@@ -81,11 +81,10 @@ class Search extends React.Component {
 
     return (
       <article className="br3 ba b--black-10 pa3-ns mv2 w-90 w-80-m w-60-l mw7 shadow-5 center searchBox">
-        <div className="pt4 pb2 ph5 ph6-ns mw6 center">
+        <div className="pt4 pb2 ph5 ph6-ns mw6 center logoBox">
           <Logo />
         </div>
         <main className="pa3 mw6 center black-60">
-          {/* <h1 className="f3 f1-ns fw6">{title}</h1> */}
           <AsyncSelect
             components={{
               LoadingIndicator: null,

@@ -1,5 +1,4 @@
 import React from "react";
-// import USFlag from "./Flags/US";
 import GreatBritainFlag from "./Flags/GB";
 import ArmeniaFlag from "./Flags/Armenia";
 import { navigationLabels } from "../../util/labels/labels";
@@ -10,7 +9,6 @@ const Navigation = ({
   route,
   changeInterfaceLanguage,
   onRouteChange,
-  // reset,
   isSignedIn,
   setLogIn,
 }) => {
@@ -22,7 +20,6 @@ const Navigation = ({
     aboutUs,
     logIn,
     logOut,
-    // editWord,
   } = labels[interfaceLanguage];
 
   return (
@@ -30,7 +27,6 @@ const Navigation = ({
       <div className="linksBox">
         <p
           onClick={() => {
-            // reset();
             onRouteChange("home");
           }}
           className={"f4 f3-ns link black-60 pa2 pa3-ns ma0 pointer".concat(
@@ -57,7 +53,6 @@ const Navigation = ({
 
         <p
           onClick={() => {
-            // reset();
             onRouteChange("aboutUs");
           }}
           className={"f4 f3-ns link black-60 pa2 pa3-ns ma0 pointer".concat(
@@ -96,7 +91,6 @@ const Navigation = ({
             )}
             onClick={() => changeInterfaceLanguage("ENG")}
           >
-            {/* {USFlag()} / {GreatBritainFlag()} */}
             {GreatBritainFlag()}
           </div>
           <div

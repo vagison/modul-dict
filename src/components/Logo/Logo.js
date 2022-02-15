@@ -1,8 +1,8 @@
 import logo from "./logo.png";
 import "./Logo.css";
 
-const ModulLogo = () => {
+const Logo = () => {
   return <img alt="logo" src={logo} />;
 };
 
-export default ModulLogo;
+export default Logo;

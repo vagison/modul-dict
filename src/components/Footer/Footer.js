@@ -20,7 +20,7 @@ const Footer = ({
         className="f6 f5-ns black-60 footerContent"
         target="_blank"
       >
-        <p>© {new Date().getFullYear()} {organization} | {rights}</p>
+        <span>© {new Date().getFullYear()} {organization} | {rights}</span>
         {/* <br/> */}
         {/* <b>© {new Date().getFullYear()} {organization}</b> */}
       </a>
