@@ -96,7 +96,8 @@ const Navigation = ({
             )}
             onClick={() => changeInterfaceLanguage("ENG")}
           >
-            {USFlag()} / {GreatBritainFlag()}
+            {/* {USFlag()} / {GreatBritainFlag()} */}
+            {GreatBritainFlag()}
           </div>
           <div
             className={"f4 f3-ns link black-60 pa2 pa3-ns ma0 pointer interfaceLanguageArmenian".concat(

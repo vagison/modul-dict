@@ -18,6 +18,11 @@
 
   .signinOptionsBox {
     order: 2;
+    display: flex;
+  }
+
+  .signinOptionsBox p {
+    margin: auto;
   }
 
   .interfaceLanguageBox {
