@@ -173,11 +173,11 @@ const navigationLabels = {
 const searchLabels = {
   ENG: {
     title: "Search word",
-    searchPlaceholder: "please type here...",
+    searchPlaceholder: "A word or phrase",
   },
   ARM: {
     title: "Որոնել բառը",
-    searchPlaceholder: "մուտքագրել այստեղ․․․",
+    searchPlaceholder: "Բառ կամ արտահայտություն",
   },
 };
 
