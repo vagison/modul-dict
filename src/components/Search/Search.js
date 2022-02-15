@@ -78,10 +78,11 @@ class Search extends React.Component {
     };
 
     return (
-      <article className="br3 ba b--black-10 pa0 pa3-ns mv2 w-90 w-80-m w-60-l mw7 shadow-5 center searchBox">
+      <article className="br3 ba b--black-10 pa3-ns mv2 w-90 w-80-m w-60-l mw7 shadow-5 center searchBox">
         <main className="pa3 mw6 center black-60">
           {/* <h1 className="f3 f1-ns fw6">{title}</h1> */}
           <AsyncSelect
+            components={{ LoadingIndicator: null }} 
             className="input-reset ba bg-transparent w-100 asyncSelectField"
             value={""}
             loadOptions={this.searchWord}
