@@ -33,7 +33,7 @@ const Navigation = ({
             // reset();
             onRouteChange("home");
           }}
-          className={"f3 link dim black-60 pa3 ma0 pointer".concat(
+          className={"f4 f3-ns link dim black-60 pa2 pa3-ns ma0 pointer".concat(
             route === "home" ? " bg-navy white" : ""
           )}
         >
@@ -43,7 +43,7 @@ const Navigation = ({
         {isSignedIn ? (
           <p
             onClick={() => onRouteChange("addTranslation")}
-            className={"f3 link dim black-60 pa3 ma0 pointer".concat(
+            className={"f4 f3-ns link dim black-60 pa2 pa3-ns ma0 pointer".concat(
               route === "addTranslation" || route === "editTranslation"
                 ? " bg-navy white white"
                 : ""
@@ -60,7 +60,7 @@ const Navigation = ({
             // reset();
             onRouteChange("aboutUs");
           }}
-          className={"f3 link dim black-60 pa3 ma0 pointer".concat(
+          className={"f4 f3-ns link dim black-60 pa2 pa3-ns ma0 pointer".concat(
             route === "aboutUs" ? " bg-navy white" : ""
           )}
         >

@@ -17,7 +17,7 @@ const Footer = ({
       <a
         href="https://modul.am/"
         rel="noreferrer"
-        className="footerContent black-60"
+        className="black-60 footerContent "
         target="_blank"
       >
         <b>© {new Date().getFullYear()} {organization} | {rights}</b>
