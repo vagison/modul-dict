@@ -17,10 +17,11 @@ const Footer = ({
       <a
         href="https://modul.am/"
         rel="noreferrer"
-        className="f6 f4-ns black-60 footerContent "
+        className="f6 f5-ns black-60 footerContent "
         target="_blank"
       >
-        <b>© {new Date().getFullYear()} {organization} | {rights}</b>
+        {/* <b>© {new Date().getFullYear()} {organization} | {rights}</b> */}
+        <b>© {new Date().getFullYear()} {organization}</b>
       </a>
     </div>
   );
