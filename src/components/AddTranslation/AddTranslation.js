@@ -227,7 +227,7 @@ class AddTranslation extends React.Component {
 
     return (
       <article className="br3 ba b--black-10 pa3-ns mb4 mv2-ns w-90 w-80-m w-60-l mw7 shadow-5 center addTranslationBox">
-        <main className="pa3 pv2 pa4-ns pv2-ns center black-60">
+        <main className="pa3 pt2 pa4-ns pv2-ns center black-60">
           <h1 className="f3 f1-ns fw6">{title}</h1>
           <form onSubmit={this.registerTranslation}>
             {/* translation fields */}
@@ -352,7 +352,7 @@ class AddTranslation extends React.Component {
               </div>
 
               {/* abbreviation armenian */}
-              <div className="mb3">
+              <div>
                 <label className="db fw6 lh-copy f6">
                   {armenianAbbreviation}
                 </label>
