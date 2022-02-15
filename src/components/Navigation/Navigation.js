@@ -1,5 +1,5 @@
 import React from "react";
-import USFlag from "./Flags/US";
+// import USFlag from "./Flags/US";
 import GreatBritainFlag from "./Flags/GB";
 import ArmeniaFlag from "./Flags/Armenia";
 import { navigationLabels } from "../../util/labels/labels";

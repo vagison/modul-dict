@@ -271,7 +271,7 @@ class EditTranslation extends React.Component {
             {/* translation fields */}
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
               {/* english word */}
-              <div className="mt3">
+              <div className="mb3">
                 <label className="db fw6 lh-copy f6">{englishWord}</label>
                 <input
                   value={this.state.englishWord}
@@ -285,7 +285,7 @@ class EditTranslation extends React.Component {
               </div>
 
               {/* armenian word */}
-              <div className="mt3">
+              <div className="mb3">
                 <label className="db fw6 lh-copy f6">{armenianWord}</label>
                 <input
                   value={this.state.armenianWord}
@@ -299,7 +299,7 @@ class EditTranslation extends React.Component {
               </div>
 
               {/* part of speech */}
-              <div className="mt3 posBox">
+              <div className="mb3 posBox">
                 <label className="db fw6 lh-copy f6">{partOfSpeech}</label>
                 <AsyncSelect
                   className="input-reset ba bg-transparent w-100 asyncSelectField"
@@ -313,7 +313,7 @@ class EditTranslation extends React.Component {
               </div>
 
               {/* english->armenian quality */}
-              <div className="mt3">
+              <div className="mb3">
                 <label className="db fw6 lh-copy f6">
                   {englishArmenianQuality}
                 </label>
@@ -330,7 +330,7 @@ class EditTranslation extends React.Component {
               </div>
 
               {/* armenian->english quality */}
-              <div className="mt3">
+              <div className="mb3">
                 <label className="db fw6 lh-copy f6">
                   {armenianEnglishQuality}
                 </label>
@@ -347,7 +347,7 @@ class EditTranslation extends React.Component {
               </div>
 
               {/* fields */}
-              <div className="mt3">
+              <div className="mb3">
                 <label className="db fw6 lh-copy f6">{fields}</label>
                 <AsyncSelect
                   isMulti
@@ -362,7 +362,7 @@ class EditTranslation extends React.Component {
               </div>
 
               {/* pronunciation */}
-              <div className="mt3">
+              <div className="mb3">
                 <label className="db fw6 lh-copy f6">{pronunciation}</label>
                 <input
                   value={this.state.pronunciation}
@@ -375,7 +375,7 @@ class EditTranslation extends React.Component {
               </div>
 
               {/* abbreviation english */}
-              <div className="mt3">
+              <div className="mb3">
                 <label className="db fw6 lh-copy f6">
                   {englishAbbreviation}
                 </label>
@@ -390,7 +390,7 @@ class EditTranslation extends React.Component {
               </div>
 
               {/* abbreviation armenian */}
-              <div className="mt3">
+              <div className="mb3">
                 <label className="db fw6 lh-copy f6">
                   {armenianAbbreviation}
                 </label>
@@ -407,7 +407,7 @@ class EditTranslation extends React.Component {
               {/* existing examples */}
               {this.state.examples.map((example, idx) => (
                 <div key={idx}>
-                  <div className="mt3">
+                  <div className="mb3">
                     <label className="db fw6 lh-copy f6">
                       {englishExampleNo} {idx + 1}
                     </label>
@@ -421,7 +421,7 @@ class EditTranslation extends React.Component {
                       onChange={this.onEnglishExampleChange}
                     />
                   </div>
-                  <div className="mt3">
+                  <div className="mb3">
                     <label className="db fw6 lh-copy f6">
                       {armenianExampleNo} {idx + 1}
                     </label>
