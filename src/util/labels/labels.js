@@ -153,7 +153,7 @@ const editTranslationLabels = {
 
 const navigationLabels = {
   ENG: {
-    searchTranslation: "Search a word",
+    searchTranslation: "Search for translation",
     addATranslation: "Add a translation",
     aboutUs: "About dictionary",
     logIn: "Sign in",
@@ -161,7 +161,7 @@ const navigationLabels = {
     // editWord: "Edit a word",
   },
   ARM: {
-    searchTranslation: "Փնտրել բառ",
+    searchTranslation: "Փնտրել թարգմանություն",
     addATranslation: "Ավելացնել թարգմանություն",
     aboutUs: "Բառարանի մասին",
     logIn: "Մուտք",
