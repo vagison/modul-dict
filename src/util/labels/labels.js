@@ -183,7 +183,7 @@ const searchLabels = {
 
 const signInLabels = {
   ENG: {
-    title: "Sign In",
+    title: "Sign in",
     email: "Email",
     password: "Password",
     signIn: "Sign in",
