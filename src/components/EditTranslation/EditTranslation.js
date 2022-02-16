@@ -440,7 +440,7 @@ class EditTranslation extends React.Component {
 
               {/* append examples */}
               <button
-                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib ma2"
+                className="b ph3 pv2 ba b--black bg-transparent grow pointer f5 ma2"
                 type="button"
                 onClick={this.appendExamples}
               >
@@ -452,7 +452,7 @@ class EditTranslation extends React.Component {
             <div className="buttonBox">
               {/* reset fields */}
               <button
-                className="b ph3 mr1 pv2 input-reset ba b--black-10 bg-transparent bg-light-yellow grow pointer f5 dib"
+                className="b ph3 mr1 pv2 ba b--black-10 bg-light-yellow grow pointer f5"
                 type="button"
                 onClick={this.resetFields}
               >
@@ -460,7 +460,7 @@ class EditTranslation extends React.Component {
               </button>
               {/* update translation */}
               <button
-                className="b ph3 ml1 pv2 input-reset ba b--black-10 bg-transparent bg-light-blue grow pointer f5 dib"
+                className="b ph3 ml1 pv2 ba b--black-10 bg-light-blue grow pointer f5"
                 type="submit"
               >
                 {updateTranslation}

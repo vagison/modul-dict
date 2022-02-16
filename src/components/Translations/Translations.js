@@ -372,7 +372,7 @@ class Translations extends React.Component {
                 <div className="buttonBox">
                   {/* edit button */}
                   <button
-                    className="b ph3 pv2 mr1 input-reset ba b--black-10 bg-transparent bg-light-green grow pointer f5 dib"
+                    className="b ph3 pv2 mr1 ba b--black-10 bg-light-green grow pointer f5"
                     type="button"
                     onClick={() => {
                       this.props.setSelectedTranslation(eachTranslation);
@@ -383,7 +383,7 @@ class Translations extends React.Component {
                   </button>
                   {/* remove button */}
                   <button
-                    className="b ph3 pv2 ml1 input-reset ba b--black-10 bg-transparent bg-light-red grow pointer f5 dib"
+                    className="b ph3 pv2 ml1 ba b--black-10 bg-light-red grow pointer f5 dib"
                     type="button"
                     onClick={() => {
                       this.deleteTranslation(() => {

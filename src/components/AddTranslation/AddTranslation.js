@@ -404,7 +404,7 @@ class AddTranslation extends React.Component {
 
               {/* append examples */}
               <button
-                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib ma2"
+                className="b ph3 pv2 ba b--black bg-transparent grow pointer f5 dib ma2"
                 type="button"
                 onClick={this.appendExamples}
               >
@@ -415,7 +415,7 @@ class AddTranslation extends React.Component {
             {/* register translation */}
             <div className="registerTranslationBox">
               <input
-                className="b ph3 pv2 input-reset ba b--black-10 bg-transparent bg-light-blue grow pointer f5 dib"
+                className="b ph3 pv2 ba b--black-10 bg-light-blue grow pointer f5 dib"
                 type="submit"
                 value={registerTranslation}
               />
