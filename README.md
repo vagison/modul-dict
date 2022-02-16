@@ -25,13 +25,13 @@ This English-Armenian / Armenian-English technical dictionary includes more than
 
 ### Desktop
 <div align="center">
-  <img width="400px" align="center" src="https://user-images.githubusercontent.com/81805058/153008654-0a6f5618-15bb-4e23-a2a8-92ca7f6164da.png">
-  <img width="400px" align="center" src="https://user-images.githubusercontent.com/81805058/153008674-c73c74b7-ac0f-4e34-a903-04ece5614a06.png">
+  <img width="400px" align="center" src="https://user-images.githubusercontent.com/81805058/154231467-5dc59d46-6b3e-41b1-8594-911b07d1af40.png">
+  <img width="400px" align="center" src="https://user-images.githubusercontent.com/81805058/154231454-42a52bb7-ce09-4223-82a1-a5ad3dd1d3e5.png">
 </div>
 
 ### Mobile
 <div align="center">
-  <img width="250px" align="center" src="https://user-images.githubusercontent.com/81805058/153011923-94cfdc16-2c54-4a71-862c-17e550178b5b.jpg">
-  <img width="250px" align="center" src="https://user-images.githubusercontent.com/81805058/153009813-d56ad877-d6af-4f8a-9d5c-ead04fd08642.jpg">
-  <img width="250px" align="center" src="https://user-images.githubusercontent.com/81805058/153009820-382317f5-560d-4a84-8820-23647ba28cc5.jpg">
+  <img width="250px" align="center" src="https://user-images.githubusercontent.com/81805058/154231556-ee95690a-cd28-4ee2-964c-2c71acf1c909.jpg">
+  <img width="250px" align="center" src="https://user-images.githubusercontent.com/81805058/154231551-92a8a9d7-98a6-47c7-9f94-0200743e731e.jpg">
+  <img width="250px" align="center" src="https://user-images.githubusercontent.com/81805058/154231558-6cc178d8-204c-40eb-9734-22097fcc2f03.jpg">
 </div>
