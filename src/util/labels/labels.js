@@ -153,7 +153,7 @@ const editTranslationLabels = {
 
 const navigationLabels = {
   ENG: {
-    searchTranslation: "Search for translation",
+    searchTranslation: "Search for a translation",
     addATranslation: "Add a translation",
     aboutUs: "About dictionary",
     logIn: "Sign in",
