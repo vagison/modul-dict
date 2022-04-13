@@ -12,6 +12,7 @@
 /build
 
 # misc
+/_misc
 .VSCodeCounter
 .DS_Store
 .env.local

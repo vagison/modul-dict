@@ -10,13 +10,13 @@ class Search extends React.Component {
     super(props);
     this.state = {
       labels: searchLabels,
-      selectedWord: "",
+      // selectedWord: "",
     };
   }
 
   searchWord = (inputValue, callback) => {
     if (inputValue) {
-      fetch("https://modul-dictionary-api.herokuapp.com/search-word", {
+      fetch("http://localhost:3000/search-word", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -53,7 +53,7 @@ class Search extends React.Component {
 
   onWordSelect = (selectedWord) => {
     if (selectedWord !== "") {
-      this.setState({ selectedWord });
+      // this.setState({ selectedWord });
       this.props.setSearchedWord(selectedWord);
     }
   };

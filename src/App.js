@@ -4,9 +4,11 @@ import { appLabels } from "./util/labels/labels";
 import Navigation from "./components/Navigation/Navigation";
 import Signin from "./components/Signin/Signin";
 import Search from "./components/Search/Search";
-import Translations from "./components/Translations/Translations";
+import Results from "./components/Results/Results";
 import AddTranslation from "./components/AddTranslation/AddTranslation";
 import EditTranslation from "./components/EditTranslation/EditTranslation";
+import AddRelation from "./components/AddRelation/AddRelation";
+import EditRelation from "./components/EditRelation/EditRelation";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
@@ -22,7 +24,8 @@ class App extends Component {
       isSignedIn: !document.cookie ? false : true,
       direction: 0,
       searchedWord: {},
-      currentTranslation: {},
+      selectedTranslation: {},
+      selectedRelation: {},
     };
   }
 
@@ -30,7 +33,9 @@ class App extends Component {
   componentDidUpdate() {
     if (
       (this.state.isSignedIn === true && this.state.route === "signin") ||
-      (this.state.isSignedIn === false && (this.state.route === "addTranslation" || this.state.route === "editTranslation"))
+      (this.state.isSignedIn === false &&
+        (this.state.route === "addTranslation" ||
+          this.state.route === "editTranslation"))
     ) {
       this.onRouteChange("home");
     }
@@ -51,7 +56,7 @@ class App extends Component {
     this.setState({
       direction: 0,
       searchedWord: {},
-      currentTranslation: {},
+      selectedTranslation: {},
     });
   };
 
@@ -60,7 +65,7 @@ class App extends Component {
     // sign out
     if (state === false) {
       // signing out from back-end
-      fetch("https://modul-dictionary-api.herokuapp.com/signout", {
+      fetch("http://localhost:3000/signout", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -70,16 +75,17 @@ class App extends Component {
           token: document.cookie.split("=", 2)[1],
         }),
       })
-      // destroying cookies and redirecting to signin page
-      .then(() => {
-        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        this.setState({ isSignedIn: state });
-        this.onRouteChange("signin");
-      })      
-      // catching errors
-      .catch((error) => {
-        console.log(error, "error occurred");
-      });
+        // destroying cookies and redirecting to signin page
+        .then(() => {
+          document.cookie =
+            "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          this.setState({ isSignedIn: state });
+          this.onRouteChange("signin");
+        })
+        // catching errors
+        .catch((error) => {
+          console.log(error, "error occurred");
+        });
     }
     // sign in
     else if (state === true) {
@@ -91,7 +97,7 @@ class App extends Component {
   // hangling route changes
   onRouteChange = (route) => {
     this.setState({ route: route });
-    if (route !== "editTranslation") {
+    if (route !== "editTranslation" && route !== "editRelation") {
       this.reset();
     }
   };
@@ -108,7 +114,12 @@ class App extends Component {
 
   // setting selected translation
   setSelectedTranslation = (translation) => {
-    this.setState({ currentTranslation: translation });
+    this.setState({ selectedTranslation: translation });
+  };
+
+  // setting selected relation
+  setSelectedRelation = (relation) => {
+    this.setState({ selectedRelation: relation });
   };
 
   render() {
@@ -116,18 +127,18 @@ class App extends Component {
     document.title = this.state.labels[this.state.interfaceLanguage]["title"];
 
     // page component
-    var page;
+    let page;
 
     // home page
     if (this.state.route === "home") {
       page = (
-        <div>
+        <div className="home">
           <Search
             interfaceLanguage={this.state.interfaceLanguage}
             setDirection={this.setDirection}
             setSearchedWord={this.setSearchedWord}
           />
-          <Translations
+          <Results
             interfaceLanguage={this.state.interfaceLanguage}
             isSignedIn={this.state.isSignedIn}
             direction={this.state.direction}
@@ -135,11 +146,14 @@ class App extends Component {
             onRouteChange={this.onRouteChange}
             setLogIn={this.setLogIn}
             setDirection={this.setDirection}
+            setSearchedWord={this.setSearchedWord}
             setSelectedTranslation={this.setSelectedTranslation}
+            setSelectedRelation={this.setSelectedRelation}
           />
         </div>
       );
     }
+
     // signin page
     if (this.state.route === "signin") {
       page = (
@@ -149,6 +163,7 @@ class App extends Component {
         />
       );
     }
+
     // add translation page
     if (this.state.route === "addTranslation") {
       page = (
@@ -159,20 +174,54 @@ class App extends Component {
         />
       );
     }
+
     // edit translation page
     if (
       this.state.route === "editTranslation" &&
-      this.state.currentTranslation.length !== 0
+      this.state.selectedTranslation.length !== 0
     ) {
       page = (
         <EditTranslation
           interfaceLanguage={this.state.interfaceLanguage}
-          currentTranslation={this.state.currentTranslation}
+          // searchedWord={this.state.searchedWord}
+          selectedTranslation={this.state.selectedTranslation}
+          setLogIn={this.setLogIn}
+          onRouteChange={this.onRouteChange}
+          // setSearchedWord={this.setSearchedWord}
+        />
+      );
+    }
+
+    // add relation page
+    if (this.state.route === "addRelation") {
+      page = (
+        <AddRelation
+          interfaceLanguage={this.state.interfaceLanguage}
+          direction={this.state.direction}
           onRouteChange={this.onRouteChange}
           setLogIn={this.setLogIn}
         />
       );
     }
+
+    // edit relation page
+    if (
+      this.state.route === "editRelation" &&
+      this.state.selectedRelation.length !== 0
+    ) {
+      page = (
+        <EditRelation
+          interfaceLanguage={this.state.interfaceLanguage}
+          direction={this.state.direction}
+          searchedWord={this.state.searchedWord}
+          selectedRelation={this.state.selectedRelation}
+          setLogIn={this.setLogIn}
+          onRouteChange={this.onRouteChange}
+          setSearchedWord={this.setSearchedWord}
+        />
+      );
+    }
+
     // about us page
     if (this.state.route === "aboutUs") {
       page = <AboutUs interfaceLanguage={this.state.interfaceLanguage} />;
@@ -192,11 +241,9 @@ class App extends Component {
           setLogOut={this.setLogOut}
         />
 
-        <div style={{ clear: "both" }}></div>
-
         {/* page component */}
+        <div style={{ clear: "both" }}></div>
         <div className="mv2 mv4-ns mt5-l">{page}</div>
-
         <div style={{ clear: "both" }}></div>
 
         {/* footer component */}

@@ -13,10 +13,11 @@ const Navigation = ({
   setLogIn,
 }) => {
   const labels = navigationLabels;
-  
+
   const {
     searchTranslation,
-    addATranslation,
+    addTranslation,
+    addRelation,
     aboutUs,
     logIn,
     logOut,
@@ -30,25 +31,36 @@ const Navigation = ({
             onRouteChange("home");
           }}
           className={"f4 f3-ns link black-60 pa2 pa3-ns ma0 pointer".concat(
-            route === "home" ? " bg-navy white" : ""
+            route === "home" ? " activePage" : ""
           )}
         >
           {searchTranslation}
         </p>
 
-        {isSignedIn ? (
+        {isSignedIn && (
           <p
             onClick={() => onRouteChange("addTranslation")}
             className={"f4 f3-ns link black-60 pa2 pa3-ns ma0 pointer".concat(
               route === "addTranslation" || route === "editTranslation"
-                ? " bg-navy white white"
+                ? " activePage"
                 : ""
             )}
           >
-            {addATranslation}
+            {addTranslation}
           </p>
-        ) : (
-          ""
+        )}
+
+        {isSignedIn && (
+          <p
+            onClick={() => onRouteChange("addRelation")}
+            className={"f4 f3-ns link black-60 pa2 pa3-ns ma0 pointer".concat(
+              route === "editRelation" || route === "addRelation"
+                ? " activePage"
+                : ""
+            )}
+          >
+            {addRelation}
+          </p>
         )}
 
         <p
@@ -56,7 +68,7 @@ const Navigation = ({
             onRouteChange("aboutUs");
           }}
           className={"f4 f3-ns link black-60 pa2 pa3-ns ma0 pointer".concat(
-            route === "aboutUs" ? " bg-navy white" : ""
+            route === "aboutUs" ? " activePage" : ""
           )}
         >
           {aboutUs}
@@ -69,7 +81,7 @@ const Navigation = ({
             <p
               onClick={() => onRouteChange("signin")}
               className={"f4 f3-ns link black-60 pa2 pa3-ns ma0 pointer".concat(
-                route === "signin" ? " bg-navy white" : ""
+                route === "signin" ? " activePage" : ""
               )}
             >
               {logIn}

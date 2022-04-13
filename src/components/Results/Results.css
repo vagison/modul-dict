@@ -1,0 +1,154 @@
+p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form {
+  width: 700px;
+}
+
+.allResultsBox {
+  text-align: center;
+}
+
+.allResults {
+}
+
+.translationsBox {
+  margin-top: 20px;
+}
+
+.translationsTitle {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.eachTranslationBox {
+  text-align: left;
+}
+
+.wordsBox {
+}
+
+.definitionsBox {
+}
+
+.allDefinitions {
+}
+
+.eachDefinitionBox {
+  /* background-color: #ffedcb; */
+  background-color: #ffe5dd;
+}
+
+.eachDefinitionArmenianText,
+.eachDefinitionEnglishText {
+  color: black;
+  text-align: justify;
+  word-break: break-word;
+  white-space: normal;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.examplesBox {
+}
+
+.allExamples {
+}
+
+.eachExampleBox {
+  /* background-color: #ffedcb; */
+  background-color: #ffe5dd;
+}
+
+.eachExampleArmenianText,
+.eachExampleEnglishText {
+  color: black;
+  text-align: justify;
+  word-break: break-word;
+  white-space: normal;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.buttonsBox {
+  text-align: center;
+}
+
+.editButton {
+  background-color: #007446;
+  color: white;
+}
+
+.removeButton {
+  background-color: #b02929;
+  color: white;
+}
+
+.seeAlsoBox {
+  text-align: justify;
+}
+
+.seeAlsoWordsBox {
+}
+
+.seeAlsoWord {
+  color: #364a6e;
+  cursor: pointer;
+}
+
+.relatedTermsBox {
+  margin-top: 20px;
+}
+
+.allRelatedTerms {
+}
+
+.relatedTermsTitle {
+  margin-top: 0px;
+}
+
+.eachBaseWordTitle {
+  color: #2f4858;
+  cursor: pointer;
+  /* color: darkblue; */
+  font-weight: 600;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.eachComparisonBox {
+  text-align: center;
+  border-style: solid;
+  border-radius: 0.5rem;
+  border-width: 2px;
+}
+
+.eachComparisonVersusWords .eachVersusWord:nth-child(1) .versusPrefix {
+  display: none;
+}
+
+.versusWord {
+  cursor: pointer;
+}
+
+.eachComparisonText {
+  color: black;
+}
+
+@media screen and (min-width: 0em) and (max-width: 70em) {
+  p {
+    /* margin-top: 5px;
+    margin-bottom: 5px; */
+  }
+}

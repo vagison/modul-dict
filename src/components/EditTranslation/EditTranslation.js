@@ -10,28 +10,32 @@ class EditTranslation extends React.Component {
     super(props);
     this.state = {
       labels: editTranslationLabels,
-      translationId: this.props.currentTranslation["translationId"],
-      oldEnglishWordId: this.props.currentTranslation["englishWordId"],
-      oldArmenianWordId: this.props.currentTranslation["armenianWordId"],
-      englishWord: this.props.currentTranslation["englishWord"],
-      armenianWord: this.props.currentTranslation["armenianWord"],
-      pos: this.props.currentTranslation["pos"],
-      qualityEngArm: this.props.currentTranslation["qualityEngArm"],
-      qualityArmEng: this.props.currentTranslation["qualityArmEng"],
-      fields: this.props.currentTranslation["fields"]
-        ? this.props.currentTranslation["fields"]
+      status: 0,
+      translationId: this.props.selectedTranslation["translationId"],
+      oldEnglishWordId: this.props.selectedTranslation["englishWordId"],
+      oldArmenianWordId: this.props.selectedTranslation["armenianWordId"],
+      englishWord: this.props.selectedTranslation["englishWord"],
+      armenianWord: this.props.selectedTranslation["armenianWord"],
+      pos: this.props.selectedTranslation["pos"],
+      qualityEngArm: this.props.selectedTranslation["qualityEngArm"],
+      qualityArmEng: this.props.selectedTranslation["qualityArmEng"],
+      fields: this.props.selectedTranslation["fields"]
+        ? this.props.selectedTranslation["fields"]
         : [],
-      pronunciation: this.props.currentTranslation["pronunciation"]
-        ? this.props.currentTranslation["pronunciation"]
+      pronunciation: this.props.selectedTranslation["pronunciation"]
+        ? this.props.selectedTranslation["pronunciation"]
         : "",
-      abbreviationEng: this.props.currentTranslation["abbreviationEng"]
-        ? this.props.currentTranslation["abbreviationEng"]
+      abbreviationEng: this.props.selectedTranslation["abbreviationEng"]
+        ? this.props.selectedTranslation["abbreviationEng"]
         : "",
-      abbreviationArm: this.props.currentTranslation["abbreviationArm"]
-        ? this.props.currentTranslation["abbreviationArm"]
+      abbreviationArm: this.props.selectedTranslation["abbreviationArm"]
+        ? this.props.selectedTranslation["abbreviationArm"]
         : "",
-      examples: this.props.currentTranslation["examples"]
-        ? this.props.currentTranslation["examples"]
+      examples: this.props.selectedTranslation["examples"]
+        ? this.props.selectedTranslation["examples"]
+        : [],
+      definitions: this.props.selectedTranslation["definitions"]
+        ? this.props.selectedTranslation["definitions"]
         : [],
     };
   }
@@ -39,31 +43,35 @@ class EditTranslation extends React.Component {
   // // resetFields
   resetFields = () => {
     this.setState({
-      translationId: this.props.currentTranslation["translationId"],
-      oldEnglishWordId: this.props.currentTranslation["englishWordId"],
-      oldArmenianWordId: this.props.currentTranslation["armenianWordId"],
-      englishWord: this.props.currentTranslation["englishWord"],
-      armenianWord: this.props.currentTranslation["armenianWord"],
-      pos: this.props.currentTranslation["pos"],
-      qualityEngArm: this.props.currentTranslation["qualityEngArm"],
-      qualityArmEng: this.props.currentTranslation["qualityArmEng"],
-      fields: this.props.currentTranslation["fields"]
-        ? this.props.currentTranslation["fields"]
+      translationId: this.props.selectedTranslation["translationId"],
+      oldEnglishWordId: this.props.selectedTranslation["englishWordId"],
+      oldArmenianWordId: this.props.selectedTranslation["armenianWordId"],
+      englishWord: this.props.selectedTranslation["englishWord"],
+      armenianWord: this.props.selectedTranslation["armenianWord"],
+      pos: this.props.selectedTranslation["pos"],
+      qualityEngArm: this.props.selectedTranslation["qualityEngArm"],
+      qualityArmEng: this.props.selectedTranslation["qualityArmEng"],
+      fields: this.props.selectedTranslation["fields"]
+        ? this.props.selectedTranslation["fields"]
         : [],
-      pronunciation: this.props.currentTranslation["pronunciation"]
-        ? this.props.currentTranslation["pronunciation"]
+      pronunciation: this.props.selectedTranslation["pronunciation"]
+        ? this.props.selectedTranslation["pronunciation"]
         : "",
-      abbreviationEng: this.props.currentTranslation["abbreviationEng"]
-        ? this.props.currentTranslation["abbreviationEng"]
+      abbreviationEng: this.props.selectedTranslation["abbreviationEng"]
+        ? this.props.selectedTranslation["abbreviationEng"]
         : "",
-      abbreviationArm: this.props.currentTranslation["abbreviationArm"]
-        ? this.props.currentTranslation["abbreviationArm"]
+      abbreviationArm: this.props.selectedTranslation["abbreviationArm"]
+        ? this.props.selectedTranslation["abbreviationArm"]
         : "",
-      examples: this.props.currentTranslation["examples"]
-        ? this.props.currentTranslation["examples"]
+      examples: this.props.selectedTranslation["examples"]
+        ? this.props.selectedTranslation["examples"]
         : [],
     });
   };
+
+  // changeSearchedWord = () => {
+  //   this.props.setSearchedWord(this.props.searchedWord);
+  // };
 
   // // parameter change
   onParamChange = (event) => {
@@ -73,7 +81,7 @@ class EditTranslation extends React.Component {
   // // part of speech
   // search part of speech
   searchPOS = (inputValue, callback) => {
-    fetch("https://modul-dictionary-api.herokuapp.com/search-pos", {
+    fetch("http://localhost:3000/search-pos", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -113,12 +121,10 @@ class EditTranslation extends React.Component {
   // // field
   // search field
   searchField = (inputValue, callback) => {
-    fetch("https://modul-dictionary-api.herokuapp.com/search-field", {
+    fetch("http://localhost:3000/search-field", {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        searchedField: inputValue,
-      }),
+      body: JSON.stringify({ searchedField: inputValue }),
     })
       .then((resp) => {
         return resp.json();
@@ -144,10 +150,39 @@ class EditTranslation extends React.Component {
   // change field
   onFieldChange = (selectedFields) => {
     if (selectedFields) {
-      this.setState({
-        fields: selectedFields,
-      });
+      this.setState({ fields: selectedFields });
     }
+  };
+
+  // // definitions
+  // append definitions
+  appendDefinitions = () => {
+    this.setState({
+      definitions: this.state.definitions.concat({
+        englishDefinition: "",
+        armenianDefinition: "",
+      }),
+    });
+  };
+  // armenian definition change
+  onArmenianDefinitionChange = (event) => {
+    this.setState({
+      definitions: update(this.state.definitions, {
+        [event.target.name]: {
+          armenianDefinition: { $set: event.target.value },
+        },
+      }),
+    });
+  };
+  // english definition change
+  onEnglishDefinitionChange = (event) => {
+    this.setState({
+      definitions: update(this.state.definitions, {
+        [event.target.name]: {
+          englishDefinition: { $set: event.target.value },
+        },
+      }),
+    });
   };
 
   // // examples
@@ -180,7 +215,7 @@ class EditTranslation extends React.Component {
   // //translation update
   updateTranslation = (event) => {
     event.preventDefault();
-    fetch("https://modul-dictionary-api.herokuapp.com/update-translation", {
+    fetch("http://localhost:3000/update-translation", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -198,49 +233,53 @@ class EditTranslation extends React.Component {
         pronunciation: this.state.pronunciation,
         abbreviationEng: this.state.abbreviationEng,
         abbreviationArm: this.state.abbreviationArm,
+        definitions: this.state.definitions,
         examples: this.state.examples,
       }),
     })
-    // setting fetch status
-    .then((res) => {
-      this.setState({ status: res["status"] });
-    })
-    // handling cases
-    .then(() => {
-      // existing word
-      if (this.state.status === 304) {
-        alert(
-          `${this.state.labels[this.props.interfaceLanguage]["existingWord"]}`
-        );
-      }
-      // incorrect user
-      else if (this.state.status === 401) {
-        alert(
-          `${
-            this.state.labels[this.props.interfaceLanguage]["incorrectUser"]
-          }`
-        );
-        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        this.props.setLogIn(false);
-        this.props.onRouteChange("signin")
-      }
-      // incorrect data
-      else if (this.state.status === 500) {
-        alert(
-          `${
-            this.state.labels[this.props.interfaceLanguage]["incorrectData"]
-          }`
-        );
-      }
-      // successfully updated
-      else {
-        this.props.onRouteChange("home");
-      }
-    })
-    // catching errors
-    .catch((error) => {
-      console.log(error, "error occurred");
-    });
+      // setting fetch status
+      .then((res) => {
+        this.setState({ status: res["status"] });
+      })
+      // handling cases
+      .then(() => {
+        // existing word
+        if (this.state.status === 304) {
+          alert(
+            `${this.state.labels[this.props.interfaceLanguage][
+            "existingTranslation"
+            ]
+            }`
+          );
+        }
+        // incorrect user
+        else if (this.state.status === 401) {
+          alert(
+            `${this.state.labels[this.props.interfaceLanguage]["incorrectUser"]
+            }`
+          );
+          document.cookie =
+            "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          this.props.setLogIn(false);
+          this.props.onRouteChange("signin");
+        }
+        // incorrect data
+        else if (this.state.status === 500) {
+          alert(
+            `${this.state.labels[this.props.interfaceLanguage]["incorrectData"]
+            }`
+          );
+        }
+        // successfully updated
+        else {
+          this.props.onRouteChange("home");
+          // this.changeSearchedWord();
+        }
+      })
+      // catching errors
+      .catch((error) => {
+        console.log(error, "error occurred");
+      });
   };
 
   render() {
@@ -259,6 +298,9 @@ class EditTranslation extends React.Component {
       englishExampleNo,
       armenianExampleNo,
       addExamples,
+      englishDefinitionNo,
+      armenianDefinitionNo,
+      addDefinitions,
       resetFields,
       updateTranslation,
     } = this.state.labels[this.props.interfaceLanguage];
@@ -268,39 +310,39 @@ class EditTranslation extends React.Component {
         <main className="pa3 pt2 pa4-ns pv2-ns center black-60">
           <h1 className="f3 f2-ns fw6">{title}</h1>
           <form className="" onSubmit={this.updateTranslation}>
-            {/* translation fields */}
-            <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-              {/* english word */}
-              <div className="mb3">
-                <label className="db fw6 lh-copy f6">{englishWord}</label>
-                <input
-                  value={this.state.englishWord}
-                  className="pa2 input-reset ba bg-transparent w-100"
-                  type="text"
-                  name="englishWord"
-                  id="englishWord"
-                  required
-                  onChange={this.onParamChange}
-                />
+            <fieldset className="ba b--transparent ph0 mh0 editTranslationFormBox">
+              <div className="mb3 wordsBox">
+                <div className="mb3 englishWordBox">
+                  <label className="db fw6 lh-copy f6">{englishWord}</label>
+                  <input
+                    value={this.state.englishWord}
+                    className="pa2 input-reset ba bg-transparent w-100"
+                    type="text"
+                    name="englishWord"
+                    id="englishWord"
+                    required
+                    onChange={this.onParamChange}
+                  />
+                </div>
+
+                <div className="armenianWordBox">
+                  <label className="db fw6 lh-copy f6">{armenianWord}</label>
+                  <input
+                    value={this.state.armenianWord}
+                    className="pa2 input-reset ba bg-transparent w-100"
+                    type="text"
+                    name="armenianWord"
+                    id="armenianWord"
+                    required
+                    onChange={this.onParamChange}
+                  />
+                </div>
               </div>
 
-              {/* armenian word */}
-              <div className="mb3">
-                <label className="db fw6 lh-copy f6">{armenianWord}</label>
-                <input
-                  value={this.state.armenianWord}
-                  className="pa2 input-reset ba bg-transparent w-100"
-                  type="text"
-                  name="armenianWord"
-                  id="armenianWord"
-                  required
-                  onChange={this.onParamChange}
-                />
-              </div>
-
-              {/* part of speech */}
               <div className="mb3 posBox">
-                <label className="db fw6 lh-copy f6">{partOfSpeech}</label>
+                <label className="db fw6 lh-copy f6 posTitle">
+                  {partOfSpeech}
+                </label>
                 <AsyncSelect
                   className="input-reset ba bg-transparent w-100 asyncSelectField"
                   value={this.state.pos}
@@ -312,43 +354,44 @@ class EditTranslation extends React.Component {
                 />
               </div>
 
-              {/* english->armenian quality */}
-              <div className="mb3">
-                <label className="db fw6 lh-copy f6">
-                  {englishArmenianQuality}
-                </label>
-                <input
-                  value={this.state.qualityEngArm}
-                  className="pa2 input-reset ba bg-transparent w-100"
-                  type="number"
-                  name="qualityEngArm"
-                  min="1"
-                  max="10"
-                  id="qualityEngArm"
-                  onChange={this.onParamChange}
-                />
+              <div className="mb3 qualitiesBox">
+                <div className="mb3 engArmQualityBox">
+                  <label className="db fw6 lh-copy f6">
+                    {englishArmenianQuality}
+                  </label>
+                  <input
+                    value={this.state.qualityEngArm}
+                    className="pa2 input-reset ba bg-transparent w-100"
+                    type="number"
+                    name="qualityEngArm"
+                    min="1"
+                    max="10"
+                    id="qualityEngArm"
+                    onChange={this.onParamChange}
+                  />
+                </div>
+
+                <div className="armEngQualityBox">
+                  <label className="db fw6 lh-copy f6">
+                    {armenianEnglishQuality}
+                  </label>
+                  <input
+                    value={this.state.qualityArmEng}
+                    className="pa2 input-reset ba bg-transparent w-100"
+                    type="number"
+                    name="qualityArmEng"
+                    min="1"
+                    max="10"
+                    id="qualityArmEng"
+                    onChange={this.onParamChange}
+                  />
+                </div>
               </div>
 
-              {/* armenian->english quality */}
-              <div className="mb3">
-                <label className="db fw6 lh-copy f6">
-                  {armenianEnglishQuality}
+              <div className="mb3 fieldsBox">
+                <label className="db fw6 lh-copy f6 fieldsTitle">
+                  {fields}
                 </label>
-                <input
-                  value={this.state.qualityArmEng}
-                  className="pa2 input-reset ba bg-transparent w-100"
-                  type="number"
-                  name="qualityArmEng"
-                  min="1"
-                  max="10"
-                  id="qualityArmEng"
-                  onChange={this.onParamChange}
-                />
-              </div>
-
-              {/* fields */}
-              <div className="mb3">
-                <label className="db fw6 lh-copy f6">{fields}</label>
                 <AsyncSelect
                   isMulti
                   className="input-reset ba bg-transparent w-100 asyncSelectField"
@@ -361,8 +404,7 @@ class EditTranslation extends React.Component {
                 />
               </div>
 
-              {/* pronunciation */}
-              <div className="mb3">
+              <div className="mb3 pronunciationBox">
                 <label className="db fw6 lh-copy f6">{pronunciation}</label>
                 <input
                   value={this.state.pronunciation}
@@ -374,96 +416,140 @@ class EditTranslation extends React.Component {
                 />
               </div>
 
-              {/* abbreviation english */}
-              <div className="mb3">
-                <label className="db fw6 lh-copy f6">
-                  {englishAbbreviation}
-                </label>
-                <input
-                  value={this.state.abbreviationEng}
-                  className="pa2 input-reset ba bg-transparent w-100"
-                  type="text"
-                  name="abbreviationEng"
-                  id="abbreviationEng"
-                  onChange={this.onParamChange}
-                />
-              </div>
-
-              {/* abbreviation armenian */}
-              <div className="mb3">
-                <label className="db fw6 lh-copy f6">
-                  {armenianAbbreviation}
-                </label>
-                <input
-                  value={this.state.abbreviationArm}
-                  className="pa2 input-reset ba bg-transparent w-100"
-                  type="text"
-                  name="abbreviationArm"
-                  id="abbreviationArm"
-                  onChange={this.onParamChange}
-                />
-              </div>
-
-              {/* existing examples */}
-              {this.state.examples.map((example, idx) => (
-                <div key={idx}>
-                  <div className="mb3">
-                    <label className="db fw6 lh-copy f6">
-                      {englishExampleNo} {idx + 1}
-                    </label>
-                    <input
-                      value={example["englishExample"]}
-                      className="pa2 input-reset ba bg-transparent w-100"
-                      type="text"
-                      name={idx}
-                      other="englishExample"
-                      id={"englishExampleNo".concat(idx)}
-                      onChange={this.onEnglishExampleChange}
-                    />
-                  </div>
-                  <div className="mb3">
-                    <label className="db fw6 lh-copy f6">
-                      {armenianExampleNo} {idx + 1}
-                    </label>
-                    <input
-                      value={example["armenianExample"]}
-                      className="pa2 input-reset ba bg-transparent w-100"
-                      type="text"
-                      name={idx}
-                      other="armenianExample"
-                      id={"armenianExampleNo".concat(idx)}
-                      onChange={this.onArmenianExampleChange}
-                    />
-                  </div>
+              <div className="mb3 abbreviationsBox">
+                <div className="mb3 engishAbbreviationBox">
+                  <label className="db fw6 lh-copy f6 englishAbbreviationTitle">
+                    {englishAbbreviation}
+                  </label>
+                  <input
+                    value={this.state.abbreviationEng}
+                    className="pa2 input-reset ba bg-transparent w-100"
+                    type="text"
+                    name="abbreviationEng"
+                    id="abbreviationEng"
+                    onChange={this.onParamChange}
+                  />
                 </div>
-              ))}
 
-              {/* append examples */}
-              <button
-                className="b ph3 pv2 ba b--black bg-transparent grow pointer f5 ma2"
-                type="button"
-                onClick={this.appendExamples}
-              >
-                {addExamples}
-              </button>
+                <div className="armenianAbbreviationBox">
+                  <label className="db fw6 lh-copy f6 armenianAbbreviationTitle">
+                    {armenianAbbreviation}
+                  </label>
+                  <input
+                    value={this.state.abbreviationArm}
+                    className="pa2 input-reset ba bg-transparent w-100"
+                    type="text"
+                    name="abbreviationArm"
+                    id="abbreviationArm"
+                    onChange={this.onParamChange}
+                  />
+                </div>
+              </div>
+
+              <div className="definitionsBox">
+                {this.state.definitions.map((definition, definitionIndex) => (
+                  <div key={definitionIndex}>
+                    <div className="mb3">
+                      <label className="db fw6 lh-copy f6">
+                        {englishDefinitionNo} {definitionIndex + 1}
+                      </label>
+                      <input
+                        value={definition["englishDefinition"]}
+                        className="pa2 input-reset ba bg-transparent w-100"
+                        type="text"
+                        name={definitionIndex}
+                        other="englishDefinition"
+                        id={"englishDefinitionNo".concat(definitionIndex)}
+                        onChange={this.onEnglishDefinitionChange}
+                      />
+                    </div>
+                    <div className="mb3">
+                      <label className="db fw6 lh-copy f6">
+                        {armenianDefinitionNo} {definitionIndex + 1}
+                      </label>
+                      <input
+                        value={definition["armenianDefinition"]}
+                        className="pa2 input-reset ba bg-transparent w-100"
+                        type="text"
+                        name={definitionIndex}
+                        other="armenianDefinition"
+                        id={"armenianDefinitionNo".concat(definitionIndex)}
+                        onChange={this.onArmenianDefinitionChange}
+                      />
+                    </div>
+                  </div>
+                ))}
+
+                <button
+                  className="fw5 ph2 ph3-ns pv1 pv2-ns ba b--black bg-transparent grow pointer f5 ma2"
+                  type="button"
+                  onClick={this.appendDefinitions}
+                >
+                  {addDefinitions}
+                </button>
+              </div>
+
+              <div className="examplesBox">
+                {this.state.examples.map((example, exampleIndex) => (
+                  <div key={exampleIndex}>
+                    <div className="mb3">
+                      <label className="db fw6 lh-copy f6">
+                        {englishExampleNo} {exampleIndex + 1}
+                      </label>
+                      <input
+                        value={example["englishExample"]}
+                        className="pa2 input-reset ba bg-transparent w-100"
+                        type="text"
+                        name={exampleIndex}
+                        other="englishExample"
+                        id={"englishExampleNo".concat(exampleIndex)}
+                        onChange={this.onEnglishExampleChange}
+                      />
+                    </div>
+                    <div className="mb3">
+                      <label className="db fw6 lh-copy f6">
+                        {armenianExampleNo} {exampleIndex + 1}
+                      </label>
+                      <input
+                        value={example["armenianExample"]}
+                        className="pa2 input-reset ba bg-transparent w-100"
+                        type="text"
+                        name={exampleIndex}
+                        other="armenianExample"
+                        id={"armenianExampleNo".concat(exampleIndex)}
+                        onChange={this.onArmenianExampleChange}
+                      />
+                    </div>
+                  </div>
+                ))}
+
+                <button
+                  className="fw5 ph2 ph3-ns pv1 pv2-ns ba b--black bg-transparent grow pointer f5 ma2"
+                  type="button"
+                  onClick={this.appendExamples}
+                >
+                  {addExamples}
+                </button>
+              </div>
             </fieldset>
 
             {/* reset fields and update translation buttons */}
             <div className="buttonBox">
+              {/* update translation */}
+              <button
+                className="fw5 ph2 ph3-ns pv1 pv2-ns mr1 ba b--black-10 grow pointer f5 updateButton"
+                type="submit"
+              >
+                {updateTranslation}
+              </button>
+
               {/* reset fields */}
               <button
-                className="b ph3 mr1 pv2 ba b--black-10 bg-light-yellow grow pointer f5"
+                className="fw5 ph2 ph3-ns pv1 pv2-ns ba b--black-10 grow pointer f5 resetButtton"
                 type="button"
                 onClick={this.resetFields}
               >
                 {resetFields}
-              </button>
-              {/* update translation */}
-              <button
-                className="b ph3 ml1 pv2 ba b--black-10 bg-light-blue grow pointer f5"
-                type="submit"
-              >
-                {updateTranslation}
               </button>
             </div>
           </form>

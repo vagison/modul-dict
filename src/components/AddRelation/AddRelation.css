@@ -1,5 +1,10 @@
-.editTranslationBox {
+.addRelationBox {
   text-align: center;
+}
+
+.activeLanguage {
+  background-color: #4C4948;
+  color: white;
 }
 
 .buttonBox {

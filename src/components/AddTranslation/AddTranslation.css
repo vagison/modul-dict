@@ -1,4 +1,8 @@
 .addTranslationBox {
-    text-align: center;
-  }
-  
+  text-align: center;
+}
+
+.registerTranslationButton {
+  background-color: #007446;
+  color: white;
+}

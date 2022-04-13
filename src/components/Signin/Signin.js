@@ -1,5 +1,5 @@
 import React from "react";
-import {signInLabels} from "../../util/labels/labels";
+import { signInLabels } from "../../util/labels/labels";
 import "./Signin.css";
 
 const initialState = {
@@ -24,7 +24,7 @@ class Signin extends React.Component {
 
   onSubmitSignIn = (event) => {
     event.preventDefault();
-    fetch("https://modul-dictionary-api.herokuapp.com/signin", {
+    fetch("http://localhost:3000/signin", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -34,15 +34,13 @@ class Signin extends React.Component {
         email: this.state.signInEmail,
         password: this.state.signInPassword,
       }),
-    })
-    .then((response) => {
+    }).then((response) => {
       if (response.status === 200) {
-        var token = response.headers.get('token');
-        var tokenExpiration = response.headers.get('token-expiration');
+        var token = response.headers.get("token");
+        var tokenExpiration = response.headers.get("token-expiration");
         document.cookie = `token=${token}; expires=${tokenExpiration}; SameSite=Strict`;
         this.props.setLogIn(true);
-      } 
-      else {
+      } else {
         alert(this.state.labels[this.props.interfaceLanguage].error);
       }
     });
@@ -88,7 +86,7 @@ class Signin extends React.Component {
             </fieldset>
             <div className="">
               <input
-                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 f5-ns"
                 type="submit"
                 value={signIn}
               />
