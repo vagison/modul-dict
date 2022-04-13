@@ -16,7 +16,7 @@ class Search extends React.Component {
 
   searchWord = (inputValue, callback) => {
     if (inputValue) {
-      fetch("http://localhost:3000/search-word", {
+      fetch("https://modul-dictionary-api.herokuapp.com/search-word", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

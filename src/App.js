@@ -65,7 +65,7 @@ class App extends Component {
     // sign out
     if (state === false) {
       // signing out from back-end
-      fetch("http://localhost:3000/signout", {
+      fetch("https://modul-dictionary-api.herokuapp.com/signout", {
         method: "post",
         headers: {
           "Content-Type": "application/json",

@@ -36,7 +36,7 @@ class EditRelation extends React.Component {
   // //relation update
   updateRelation = (event) => {
     event.preventDefault();
-    fetch("http://localhost:3000/update-comparison", {
+    fetch("https://modul-dictionary-api.herokuapp.com/update-comparison", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -87,7 +87,7 @@ class EditRelation extends React.Component {
   // // word
   // search word
   searchWord = (inputValue, callback) => {
-    fetch("http://localhost:3000/search-word", {
+    fetch("https://modul-dictionary-api.herokuapp.com/search-word", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

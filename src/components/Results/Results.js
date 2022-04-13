@@ -62,7 +62,7 @@ class Results extends React.Component {
   async fetchingTranslations(word, direction) {
     // searching for translations
     return (
-      fetch("http://localhost:3000/search-translation", {
+      fetch("https://modul-dictionary-api.herokuapp.com/search-translation", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -130,7 +130,7 @@ class Results extends React.Component {
   };
 
   removeTranslation = (translationId) => {
-    fetch("http://localhost:3000/delete-translation", {
+    fetch("https://modul-dictionary-api.herokuapp.com/delete-translation", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -186,7 +186,7 @@ class Results extends React.Component {
   async fetchingRelatedTerms() {
     // searching for relatedTerms
     return (
-      fetch("http://localhost:3000/search-comparison", {
+      fetch("https://modul-dictionary-api.herokuapp.com/search-comparison", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -203,7 +203,7 @@ class Results extends React.Component {
   }
 
   removeComparison = (comparisonId) => {
-    fetch("http://localhost:3000/delete-comparison", {
+    fetch("https://modul-dictionary-api.herokuapp.com/delete-comparison", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

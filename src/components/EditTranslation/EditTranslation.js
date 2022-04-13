@@ -81,7 +81,7 @@ class EditTranslation extends React.Component {
   // // part of speech
   // search part of speech
   searchPOS = (inputValue, callback) => {
-    fetch("http://localhost:3000/search-pos", {
+    fetch("https://modul-dictionary-api.herokuapp.com/search-pos", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -121,7 +121,7 @@ class EditTranslation extends React.Component {
   // // field
   // search field
   searchField = (inputValue, callback) => {
-    fetch("http://localhost:3000/search-field", {
+    fetch("https://modul-dictionary-api.herokuapp.com/search-field", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ searchedField: inputValue }),
@@ -215,7 +215,7 @@ class EditTranslation extends React.Component {
   // //translation update
   updateTranslation = (event) => {
     event.preventDefault();
-    fetch("http://localhost:3000/update-translation", {
+    fetch("https://modul-dictionary-api.herokuapp.com/update-translation", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
