@@ -658,7 +658,7 @@ class Results extends React.Component {
                               (comparison, comparisonIndex) => {
                                 return (
                                   <div
-                                    className="eachComparisonBox mb2"
+                                    className="eachComparisonBox ph2 mb2"
                                     key={comparisonIndex}
                                   >
                                     <p className="eachComparisonVersusWords">
