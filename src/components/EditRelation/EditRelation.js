@@ -44,7 +44,7 @@ class EditRelation extends React.Component {
         token: document.cookie.split("=", 2)[1],
         language: this.props.direction,
         comparisonId: this.state.comparisonId,
-        comparisonText: this.props.selectedRelation["comparison"]["label"],
+        comparisonText: this.state.comparisonText,
         words: this.state.words,
       }),
     })
