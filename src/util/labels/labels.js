@@ -11,7 +11,7 @@ const appLabels = {
 
 const aboutUsLabels = {
   ENG: {
-    aboutUsTitle: "About us!",
+    aboutUsTitle: "About us",
     aboutUsContent:
       '"MODUL" LLC was founded in 2015 as an independent consulting engineering company. The company carries out investigation and design of construction projects, independent expertise of design documents, technical supervision over construction works, consulting services and project management in accordance with the RA legislation, international contracts (FIDIC) and guidelines.',
     aboutProjectTitle: "About dictionary",
