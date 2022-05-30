@@ -16,7 +16,7 @@ const aboutUsLabels = {
       '"MODUL" LLC was founded in 2015 as an independent consulting engineering company. The company carries out investigation and design of construction projects, independent expertise of design documents, technical supervision over construction works, consulting services and project management in accordance with the RA legislation, international contracts (FIDIC) and guidelines.',
     aboutProjectTitle: "About dictionary",
     aboutProjectContent:
-      "This English-Armenian / Armenian-English online technical dictionary includes more than 5000 entries (including: words, phrases and abbreviations) that are widely used in various technical fields. The database is created based on our company's years of experience in the field of technical documentation and translation.",
+      "This English-Armenian / Armenian-English online technical dictionary includes more than 5000 entities (including: words, phrases and abbreviations) that are widely used in various technical fields. The database is created based on our company's years of experience in the field of technical documentation and translation.",
   },
   ARM: {
     aboutUsTitle: "Մեր մասին",
