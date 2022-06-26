@@ -1,7 +1,7 @@
 import React from "react";
 import AsyncSelect from "react-select/async";
 
-import APIURL from "../../util/env"
+import API_URL from "../../util/env"
 import Logo from "../Logo/Logo";
 import { searchLabels } from "../../util/labels/labels";
 import "./Search.css";
@@ -17,7 +17,7 @@ class Search extends React.Component {
 
   searchWord = (inputValue, callback) => {
     if (inputValue) {
-      fetch(APIURL + "search-word", {
+      fetch(API_URL + "search-word", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -1,7 +1,7 @@
 import React from "react";
 import AsyncSelect from "react-select/async";
 
-import APIURL from "../../util/env"
+import API_URL from "../../util/env"
 import { editRelationLabels } from "../../util/labels/labels";
 import "./EditRelation.css";
 
@@ -37,7 +37,7 @@ class EditRelation extends React.Component {
   // //relation update
   updateRelation = (event) => {
     event.preventDefault();
-    fetch(APIURL + "update-comparison", {
+    fetch(API_URL + "update-comparison", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -88,7 +88,7 @@ class EditRelation extends React.Component {
   // // word
   // search word
   searchWord = (inputValue, callback) => {
-    fetch(APIURL + "search-word", {
+    fetch(API_URL + "search-word", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

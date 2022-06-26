@@ -2,7 +2,7 @@ import React from "react";
 import update from "react-addons-update";
 import AsyncSelect from "react-select/async";
 
-import APIURL from "../../util/env"
+import API_URL from "../../util/env"
 import { addTranslationLabels } from "../../util/labels/labels";
 import "./AddTranslation.css";
 
@@ -41,7 +41,7 @@ class AddTranslation extends React.Component {
   // // part of speech
   // search part of speech
   searchPOS = (inputValue, callback) => {
-    fetch(APIURL+"search-pos", {
+    fetch(API_URL+"search-pos", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -81,7 +81,7 @@ class AddTranslation extends React.Component {
   // // field
   // search field
   searchField = (inputValue, callback) => {
-    fetch(APIURL+"search-field", {
+    fetch(API_URL+"search-field", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -179,7 +179,7 @@ class AddTranslation extends React.Component {
   // //translation registration
   registerTranslation = (event) => {
     event.preventDefault();
-    fetch(APIURL + "register-translation", {
+    fetch(API_URL + "register-translation", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

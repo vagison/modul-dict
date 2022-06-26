@@ -2,7 +2,7 @@ import React from "react";
 import update from "react-addons-update";
 import AsyncSelect from "react-select/async";
 
-import APIURL from "../../util/env"
+import API_URL from "../../util/env"
 import { editTranslationLabels } from "../../util/labels/labels";
 import "./EditTranslation.css";
 
@@ -82,7 +82,7 @@ class EditTranslation extends React.Component {
   // // part of speech
   // search part of speech
   searchPOS = (inputValue, callback) => {
-    fetch(APIURL + "search-pos", {
+    fetch(API_URL + "search-pos", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -122,7 +122,7 @@ class EditTranslation extends React.Component {
   // // field
   // search field
   searchField = (inputValue, callback) => {
-    fetch(APIURL + "search-field", {
+    fetch(API_URL + "search-field", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ searchedField: inputValue }),
@@ -216,7 +216,7 @@ class EditTranslation extends React.Component {
   // //translation update
   updateTranslation = (event) => {
     event.preventDefault();
-    fetch(APIURL + "update-translation", {
+    fetch(API_URL + "update-translation", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

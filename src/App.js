@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import APIURL from "./util/env"
+import API_URL from "./util/env"
 import { appLabels } from "./util/labels/labels";
 import Navigation from "./components/Navigation/Navigation";
 import Signin from "./components/Signin/Signin";
@@ -66,7 +66,7 @@ class App extends Component {
     // sign out
     if (state === false) {
       // signing out from back-end
-      fetch(APIURL + "signout", {
+      fetch(API_URL + "signout", {
         method: "post",
         headers: {
           "Content-Type": "application/json",

@@ -1,7 +1,7 @@
 import React from "react";
 
 
-import APIURL from "../../util/env"
+import API_URL from "../../util/env"
 import { signInLabels } from "../../util/labels/labels";
 import "./Signin.css";
 
@@ -27,7 +27,7 @@ class Signin extends React.Component {
 
   onSubmitSignIn = (event) => {
     event.preventDefault();
-    fetch(APIURL + "signin", {
+    fetch(API_URL + "signin", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

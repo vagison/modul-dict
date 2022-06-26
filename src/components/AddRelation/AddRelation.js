@@ -1,7 +1,7 @@
 import React from "react";
 import AsyncSelect from "react-select/async";
 
-import APIURL from "../../util/env"
+import API_URL from "../../util/env"
 import { addRelationLabels } from "../../util/labels/labels";
 import "./AddRelation.css";
 
@@ -33,7 +33,7 @@ class AddRelation extends React.Component {
   // //register relation
   registerRelation = (event) => {
     event.preventDefault();
-    fetch(APIURL + "register-comparison", {
+    fetch(API_URL + "register-comparison", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -83,7 +83,7 @@ class AddRelation extends React.Component {
   // // word
   // search word
   searchWord = (inputValue, callback) => {
-    fetch(APIURL+"search-word", {
+    fetch(API_URL+"search-word", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -1,6 +1,6 @@
 import React from "react";
 
-import APIURL from "../../util/env"
+import API_URL from "../../util/env"
 import { resultsLabels, posLabels, fieldLabels } from "../../util/labels/labels";
 import "./Results.css";
 
@@ -63,7 +63,7 @@ class Results extends React.Component {
   async fetchingTranslations(word, direction) {
     // searching for translations
     return (
-      fetch(APIURL + "search-translation", {
+      fetch(API_URL + "search-translation", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -131,7 +131,7 @@ class Results extends React.Component {
   };
 
   removeTranslation = (translationId) => {
-    fetch(APIURL + "delete-translation", {
+    fetch(API_URL + "delete-translation", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -187,7 +187,7 @@ class Results extends React.Component {
   async fetchingRelatedTerms() {
     // searching for relatedTerms
     return (
-      fetch(APIURL + "search-comparison", {
+      fetch(API_URL + "search-comparison", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -204,7 +204,7 @@ class Results extends React.Component {
   }
 
   removeComparison = (comparisonId) => {
-    fetch(APIURL + "delete-comparison", {
+    fetch(API_URL + "delete-comparison", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
