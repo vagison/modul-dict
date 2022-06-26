@@ -1,3 +1,3 @@
-const APIURL = process.env.API_URL ? process.env.API_URL : 'http://localhost:3000/'
+const APIURL = process.env.API_URL ? process.env.API_URL : "https://modul-dictionary-api.herokuapp.com/"
 
 export default APIURL
