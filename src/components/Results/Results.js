@@ -1,5 +1,6 @@
 import React from "react";
 
+import APIURL from "../../util/env"
 import { resultsLabels, posLabels, fieldLabels } from "../../util/labels/labels";
 import "./Results.css";
 
@@ -62,7 +63,7 @@ class Results extends React.Component {
   async fetchingTranslations(word, direction) {
     // searching for translations
     return (
-      fetch("https://modul-dictionary-api.herokuapp.com/search-translation", {
+      fetch(APIURL + "search-translation", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -130,7 +131,7 @@ class Results extends React.Component {
   };
 
   removeTranslation = (translationId) => {
-    fetch("https://modul-dictionary-api.herokuapp.com/delete-translation", {
+    fetch(APIURL + "delete-translation", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -186,7 +187,7 @@ class Results extends React.Component {
   async fetchingRelatedTerms() {
     // searching for relatedTerms
     return (
-      fetch("https://modul-dictionary-api.herokuapp.com/search-comparison", {
+      fetch(APIURL + "search-comparison", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -203,7 +204,7 @@ class Results extends React.Component {
   }
 
   removeComparison = (comparisonId) => {
-    fetch("https://modul-dictionary-api.herokuapp.com/delete-comparison", {
+    fetch(APIURL + "delete-comparison", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

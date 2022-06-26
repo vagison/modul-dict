@@ -1,4 +1,7 @@
 import React from "react";
+
+
+import APIURL from "../../util/env"
 import { signInLabels } from "../../util/labels/labels";
 import "./Signin.css";
 
@@ -24,7 +27,7 @@ class Signin extends React.Component {
 
   onSubmitSignIn = (event) => {
     event.preventDefault();
-    fetch("https://modul-dictionary-api.herokuapp.com/signin", {
+    fetch(APIURL + "signin", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

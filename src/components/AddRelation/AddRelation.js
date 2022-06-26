@@ -1,6 +1,7 @@
 import React from "react";
 import AsyncSelect from "react-select/async";
 
+import APIURL from "../../util/env"
 import { addRelationLabels } from "../../util/labels/labels";
 import "./AddRelation.css";
 
@@ -32,7 +33,7 @@ class AddRelation extends React.Component {
   // //register relation
   registerRelation = (event) => {
     event.preventDefault();
-    fetch("https://modul-dictionary-api.herokuapp.com/register-comparison", {
+    fetch(APIURL + "register-comparison", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -82,7 +83,7 @@ class AddRelation extends React.Component {
   // // word
   // search word
   searchWord = (inputValue, callback) => {
-    fetch("https://modul-dictionary-api.herokuapp.com/search-word", {
+    fetch(APIURL+"search-word", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

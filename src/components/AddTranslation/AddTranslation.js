@@ -2,6 +2,7 @@ import React from "react";
 import update from "react-addons-update";
 import AsyncSelect from "react-select/async";
 
+import APIURL from "../../util/env"
 import { addTranslationLabels } from "../../util/labels/labels";
 import "./AddTranslation.css";
 
@@ -40,7 +41,7 @@ class AddTranslation extends React.Component {
   // // part of speech
   // search part of speech
   searchPOS = (inputValue, callback) => {
-    fetch("https://modul-dictionary-api.herokuapp.com/search-pos", {
+    fetch(APIURL+"search-pos", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -80,7 +81,7 @@ class AddTranslation extends React.Component {
   // // field
   // search field
   searchField = (inputValue, callback) => {
-    fetch("https://modul-dictionary-api.herokuapp.com/search-field", {
+    fetch(APIURL+"search-field", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -178,7 +179,7 @@ class AddTranslation extends React.Component {
   // //translation registration
   registerTranslation = (event) => {
     event.preventDefault();
-    fetch("https://modul-dictionary-api.herokuapp.com/register-translation", {
+    fetch(APIURL + "register-translation", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

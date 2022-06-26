@@ -2,6 +2,7 @@ import React from "react";
 import update from "react-addons-update";
 import AsyncSelect from "react-select/async";
 
+import APIURL from "../../util/env"
 import { editTranslationLabels } from "../../util/labels/labels";
 import "./EditTranslation.css";
 
@@ -81,7 +82,7 @@ class EditTranslation extends React.Component {
   // // part of speech
   // search part of speech
   searchPOS = (inputValue, callback) => {
-    fetch("https://modul-dictionary-api.herokuapp.com/search-pos", {
+    fetch(APIURL + "search-pos", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -121,7 +122,7 @@ class EditTranslation extends React.Component {
   // // field
   // search field
   searchField = (inputValue, callback) => {
-    fetch("https://modul-dictionary-api.herokuapp.com/search-field", {
+    fetch(APIURL + "search-field", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ searchedField: inputValue }),
@@ -215,7 +216,7 @@ class EditTranslation extends React.Component {
   // //translation update
   updateTranslation = (event) => {
     event.preventDefault();
-    fetch("https://modul-dictionary-api.herokuapp.com/update-translation", {
+    fetch(APIURL + "update-translation", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
