@@ -486,7 +486,7 @@ class Results extends React.Component {
                         ) : (
                           <p>
                             <b>{fields}</b>
-                            {fieldLabels[this.props.interfaceLanguage][1]}
+                            {fieldLabels[this.props.interfaceLanguage][24]}
                           </p>
                         )}
                       </div>
