@@ -1,7 +1,11 @@
 import React from "react";
 
-import API_URL from "../../util/env"
-import { resultsLabels, posLabels, fieldLabels } from "../../util/labels/labels";
+import API_URL from "../../util/env";
+import {
+  resultsLabels,
+  posLabels,
+  fieldLabels,
+} from "../../util/labels/labels";
 import "./Results.css";
 
 const initialState = {
@@ -89,7 +93,7 @@ class Results extends React.Component {
             )
           );
           this.loadSeeAlsoWords(
-            this.groupSeeAlsoWords(
+            this.groupSeeAlsoPhrases(
               responseJSON["translations"],
               this.props.searchedWord["label"],
               this.props.direction,
@@ -107,17 +111,12 @@ class Results extends React.Component {
   groupTranslations = (data, word, direction, type) => {
     if (type === "word") {
       let column = direction === 1 ? "englishWord" : "armenianWord";
-
       let exact = [];
-
       for (let i = 0; i < data.length; i++) {
         if (data[i][column] === word) {
           exact.push(data[i]);
         }
       }
-
-      exact.sort();
-
       return exact;
     } else if (type === "abbreviation") {
       return data;
@@ -149,14 +148,16 @@ class Results extends React.Component {
         // deleting error
         if (this.state.status === 500) {
           alert(
-            `${this.state.labels[this.props.interfaceLanguage]["deletingError"]
+            `${
+              this.state.labels[this.props.interfaceLanguage]["deletingError"]
             }`
           );
         }
         // incorrect user
         else if (this.state.status === 401) {
           alert(
-            `${this.state.labels[this.props.interfaceLanguage]["incorrectUser"]
+            `${
+              this.state.labels[this.props.interfaceLanguage]["incorrectUser"]
             }`
           );
           document.cookie =
@@ -223,14 +224,16 @@ class Results extends React.Component {
         // deleting error
         if (this.state.status === 500) {
           alert(
-            `${this.state.labels[this.props.interfaceLanguage]["deletingError"]
+            `${
+              this.state.labels[this.props.interfaceLanguage]["deletingError"]
             }`
           );
         }
         // incorrect user
         else if (this.state.status === 401) {
           alert(
-            `${this.state.labels[this.props.interfaceLanguage]["incorrectUser"]
+            `${
+              this.state.labels[this.props.interfaceLanguage]["incorrectUser"]
             }`
           );
 
@@ -251,22 +254,38 @@ class Results extends React.Component {
       });
   };
 
+  // for (let i = 0; i < data.length; i++) {
+  //   if (data[i][column] === word) {
+  //   } else {
+  //     if (
+  //       otherWords.filter((element) => element["label"] === data[i][column])
+  //         .length === 0
+  //     ) {
+  //       otherWords.push({
+  //         label: data[i][column],
+  //         type: type,
+  //         value: [
+  //           data[i][direction === 1 ? "englishWordId" : "armenianWordId"],
+  //         ],
+  //       });
+  //     }
+  //   }
+  // }
+
   // see also
-  groupSeeAlsoWords = (data, word, direction, type) => {
-    if (type === "abbreviation") {
-      return [];
-    } else {
+  groupSeeAlsoPhrases = (data, word, direction, type) => {
+    if (type !== "abbreviation") {
       let column = direction === 1 ? "englishWord" : "armenianWord";
-      let otherWords = [];
+      let seeAlsoPhrases = [];
 
       for (let i = 0; i < data.length; i++) {
-        if (data[i][column] === word) {
-        } else {
+        if (data[i][column] !== word) {
           if (
-            otherWords.filter((element) => element["label"] === data[i][column])
-              .length === 0
+            seeAlsoPhrases.filter(
+              (element) => element["label"] === data[i][column]
+            ).length === 0
           ) {
-            otherWords.push({
+            seeAlsoPhrases.push({
               label: data[i][column],
               type: type,
               value: [
@@ -277,9 +296,17 @@ class Results extends React.Component {
         }
       }
 
-      otherWords.sort();
+      seeAlsoPhrases = seeAlsoPhrases.sort((a, b) =>
+        a.label.toLowerCase() > b.label.toLowerCase()
+          ? 1
+          : b.label.toLowerCase() > a.label.toLowerCase()
+          ? -1
+          : 0
+      );
 
-      return otherWords;
+      return seeAlsoPhrases;
+    } else {
+      return [];
     }
   };
 
@@ -310,8 +337,7 @@ class Results extends React.Component {
     } = this.state.labels[this.props.interfaceLanguage];
 
     return (
-      this.state.translations.length !== 0 &&
-      (
+      this.state.translations.length !== 0 && (
         <article className="br3 ba b--black-10 pa2 pa3-ns mb4 mv2-ns w-90 w-80-m w-60-l mw7 shadow-5 center allResultsBox">
           <main className="pa2 mw6 center black-60 allResults">
             <div className="translationsBox">
@@ -343,8 +369,8 @@ class Results extends React.Component {
                                 <b>{english}</b>
                                 {eachTranslation.pos["label"] === "verb"
                                   ? "(to) ".concat(
-                                    eachTranslation["englishWord"]
-                                  )
+                                      eachTranslation["englishWord"]
+                                    )
                                   : eachTranslation["englishWord"]}
                               </p>
 
@@ -380,8 +406,8 @@ class Results extends React.Component {
                                 <b>{english}</b>
                                 {eachTranslation.pos["label"] === "verb"
                                   ? "(to) ".concat(
-                                    eachTranslation["englishWord"]
-                                  )
+                                      eachTranslation["englishWord"]
+                                    )
                                   : eachTranslation["englishWord"]}
                               </p>
                             </div>
@@ -451,7 +477,7 @@ class Results extends React.Component {
                             <b>{partOfSpeech}</b>{" "}
                             {
                               this.state.posLabels[
-                              this.props.interfaceLanguage
+                                this.props.interfaceLanguage
                               ][eachTranslation.pos["value"]]
                             }
                           </p>
@@ -476,11 +502,11 @@ class Results extends React.Component {
                                 eachTranslation["fields"].length - 1
                               ]["label"] !== field["label"]
                                 ? fieldLabels[this.props.interfaceLanguage][
-                                  field["value"]
-                                ].concat(", ")
+                                    field["value"]
+                                  ].concat(", ")
                                 : fieldLabels[this.props.interfaceLanguage][
-                                field["value"]
-                                ]
+                                    field["value"]
+                                  ]
                             )}
                           </p>
                         ) : (
@@ -620,7 +646,7 @@ class Results extends React.Component {
                       </div>
 
                       {eachTranslationIndex <
-                        this.state.translations.length - 1 ? (
+                      this.state.translations.length - 1 ? (
                         <hr />
                       ) : (
                         ""
@@ -632,144 +658,143 @@ class Results extends React.Component {
             </div>
 
             <div className="relatedTermsBox">
-              {this.state.relatedTerms.length !== 0 && (<h1 className="f3 f2-ns fw6 mb0 relatedTermsTitle">{realatedTerms}</h1>)}
-              {this.state.relatedTerms.length !== 0 &&
-                (
-                  <div className="allRelatedTerms">
-                    {this.state.relatedTerms.map(
-                      (relationsForWord, baseWordIndex) => {
-                        return (
-                          <div className="eachBaseWordBox" key={baseWordIndex}>
-                            <p
-                              className="f4"
-                            >
-                              <span
-                                className="eachBaseWordTitle"
-                                onClick={() => {
-                                  this.changeSearchedWord(
-                                    relationsForWord["baseWord"]
-                                  );
-                                }}>
-                                {relationsForWord["baseWord"]["label"]}
-                              </span>
-                              <b>{" vs."}</b>
-                            </p>
-
-                            {relationsForWord["comparisonsPerWord"].map(
-                              (comparison, comparisonIndex) => {
-                                return (
-                                  <div
-                                    className="eachComparisonBox ph2 mb2"
-                                    key={comparisonIndex}
-                                  >
-                                    <p className="eachComparisonVersusWords">
-                                      {comparison["relatedWords"].map(
-                                        (word, relatedWordIndex) => {
-                                          if (
-                                            word["label"] !==
-                                            relationsForWord["baseWord"]["label"]
-                                          ) {
-                                            return (
-                                              <span
-                                                className="eachVersusWord"
-                                                key={relatedWordIndex}
-                                              >
-                                                <b className="versusPrefix">vs. </b>
-                                                <b
-                                                  className="versusWord"
-                                                  onClick={() => {
-                                                    this.changeSearchedWord(word);
-                                                  }}
-                                                >
-                                                  {word["label"]}
-                                                </b>
-                                                <b className="versusPostfix"> </b>
-                                              </span>
-                                            );
-                                          }
-                                          return "";
-                                        }
-                                      )}
-                                    </p>
-
-                                    <p className="eachComparisonText">
-                                      {comparison["comparison"]["label"]}
-                                    </p>
-
-                                    {this.props.isSignedIn && (
-                                      <div className="mv2 buttonsBox">
-                                        {/* edit button */}
-                                        <button
-                                          className="fw5 ph2 ph3-ns pv1 pv2-ns mr1 ba b--black-10 grow pointer f5 editButton"
-                                          type="button"
-                                          onClick={() => {
-                                            this.props.setSelectedRelation(
-                                              comparison
-                                            );
-                                            this.props.onRouteChange(
-                                              "editRelation"
-                                            );
-                                          }}
-                                        >
-                                          {editRelation}
-                                        </button>
-
-                                        {/* remove button */}
-                                        <button
-                                          className="fw5 ph2 ph3-ns pv1 pv2-ns ml1 ba b--black-10 grow pointer f5 removeButton"
-                                          type="button"
-                                          onClick={() => {
-                                            this.removeComparison(
-                                              comparison["comparison"]["value"]
-                                            );
-                                          }}
-                                        >
-                                          {removeRelation}
-                                        </button>
-                                      </div>
-                                    )}
-                                  </div>
+              {this.state.relatedTerms.length !== 0 && (
+                <h1 className="f3 f2-ns fw6 mb0 relatedTermsTitle">
+                  {realatedTerms}
+                </h1>
+              )}
+              {this.state.relatedTerms.length !== 0 && (
+                <div className="allRelatedTerms">
+                  {this.state.relatedTerms.map(
+                    (relationsForWord, baseWordIndex) => {
+                      return (
+                        <div className="eachBaseWordBox" key={baseWordIndex}>
+                          <p className="f4">
+                            <span
+                              className="eachBaseWordTitle"
+                              onClick={() => {
+                                this.changeSearchedWord(
+                                  relationsForWord["baseWord"]
                                 );
-                              }
-                            )}
-                            {baseWordIndex <
-                              this.state.relatedTerms.length - 1 ? (
-                              <hr />
-                            ) : (
-                              ""
-                            )}
-                          </div>
-                        );
-                      }
-                    )}
-                  </div>
-                )
-              }
+                              }}
+                            >
+                              {relationsForWord["baseWord"]["label"]}
+                            </span>
+                            <b>{" vs."}</b>
+                          </p>
+
+                          {relationsForWord["comparisonsPerWord"].map(
+                            (comparison, comparisonIndex) => {
+                              return (
+                                <div
+                                  className="eachComparisonBox ph2 mb2"
+                                  key={comparisonIndex}
+                                >
+                                  <p className="eachComparisonVersusWords">
+                                    {comparison["relatedWords"].map(
+                                      (word, relatedWordIndex) => {
+                                        if (
+                                          word["label"] !==
+                                          relationsForWord["baseWord"]["label"]
+                                        ) {
+                                          return (
+                                            <span
+                                              className="eachVersusWord"
+                                              key={relatedWordIndex}
+                                            >
+                                              <b className="versusPrefix">
+                                                vs.{" "}
+                                              </b>
+                                              <b
+                                                className="versusWord"
+                                                onClick={() => {
+                                                  this.changeSearchedWord(word);
+                                                }}
+                                              >
+                                                {word["label"]}
+                                              </b>
+                                              <b className="versusPostfix"> </b>
+                                            </span>
+                                          );
+                                        }
+                                        return "";
+                                      }
+                                    )}
+                                  </p>
+
+                                  <p className="eachComparisonText">
+                                    {comparison["comparison"]["label"]}
+                                  </p>
+
+                                  {this.props.isSignedIn && (
+                                    <div className="mv2 buttonsBox">
+                                      {/* edit button */}
+                                      <button
+                                        className="fw5 ph2 ph3-ns pv1 pv2-ns mr1 ba b--black-10 grow pointer f5 editButton"
+                                        type="button"
+                                        onClick={() => {
+                                          this.props.setSelectedRelation(
+                                            comparison
+                                          );
+                                          this.props.onRouteChange(
+                                            "editRelation"
+                                          );
+                                        }}
+                                      >
+                                        {editRelation}
+                                      </button>
+
+                                      {/* remove button */}
+                                      <button
+                                        className="fw5 ph2 ph3-ns pv1 pv2-ns ml1 ba b--black-10 grow pointer f5 removeButton"
+                                        type="button"
+                                        onClick={() => {
+                                          this.removeComparison(
+                                            comparison["comparison"]["value"]
+                                          );
+                                        }}
+                                      >
+                                        {removeRelation}
+                                      </button>
+                                    </div>
+                                  )}
+                                </div>
+                              );
+                            }
+                          )}
+                          {baseWordIndex <
+                          this.state.relatedTerms.length - 1 ? (
+                            <hr />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
+              )}
             </div>
 
             <div className="seeAlsoBox">
               {this.state.seeAlsoWords.length !== 0 && <hr />}
-              {this.state.seeAlsoWords.length !== 0 &&
-                (
-                  <div className="seeAlsoWordsBox mt3">
-                    <b>{seeAlso}</b>
-                    {this.state.seeAlsoWords.map((eachWord, eachWordIndex) => (
-                      <span
-                        className="seeAlsoWord"
-                        onClick={() => this.changeSearchedWord(eachWord)}
-                        key={eachWordIndex}
-                      >
-                        {eachWord["label"] +
-                          (eachWordIndex !== this.state.seeAlsoWords.length - 1
-                            ? ", "
-                            : ""
-                          )
-                        }
-                      </span>
-                    ))}
-                  </div>
-                )
-              }
+              {this.state.seeAlsoWords.length !== 0 && (
+                <div className="seeAlsoWordsBox mt3">
+                  <b>{seeAlso}</b>
+                  {this.state.seeAlsoWords.map((eachWord, eachWordIndex) => (
+                    <span
+                      className="seeAlsoWord"
+                      onClick={() => this.changeSearchedWord(eachWord)}
+                      key={eachWordIndex}
+                    >
+                      {eachWord["label"] +
+                        (eachWordIndex !== this.state.seeAlsoWords.length - 1
+                          ? ", "
+                          : "")}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </main>
         </article>
