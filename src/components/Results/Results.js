@@ -793,7 +793,7 @@ class Results extends React.Component {
                     >
                       {eachWord["label"] +
                         (eachWordIndex !== this.state.seeAlsoWords.length - 1
-                          ? ", "
+                          ? "; "
                           : "")}
                     </span>
                   ))}
