@@ -783,7 +783,11 @@ class Results extends React.Component {
                   <b>{seeAlso}</b>
                   {this.state.seeAlsoWords.map((eachWord, eachWordIndex) => (
                     <span
-                      className="seeAlsoWord"
+                      className={
+                        eachWordIndex % 2 === 0
+                          ? "seeAlsoWordEven"
+                          : "seeAlsoWordOdd"
+                      }
                       onClick={() => this.changeSearchedWord(eachWord)}
                       key={eachWordIndex}
                     >

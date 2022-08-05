@@ -103,7 +103,15 @@ h1 {
 }
 
 .seeAlsoWord {
+}
+
+.seeAlsoWordEven {
   color: #364a6e;
+  cursor: pointer;
+}
+
+.seeAlsoWordOdd {
+  color: #007446;
   cursor: pointer;
 }
 
